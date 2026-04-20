@@ -1,5 +1,6 @@
 package com.sarinkejohn.digitalwalletbackendservice.entity;
 
+import com.sarinkejohn.digitalwalletbackendservice.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
