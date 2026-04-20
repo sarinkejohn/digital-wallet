@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: digital_wallet_DB-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: digital_wallet_db
+      PGDATA: /data/postgres
+    ports:
+      - "5438:5432"
+    volumes:
+      - db:/data/postgres
+    networks:
+      - db
+networks:
+  db:
+    driver: bridge
+volumes:
+  db:

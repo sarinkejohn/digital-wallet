@@ -1,0 +1,99 @@
+server:
+  port: 9090
+
+spring:
+  docker:
+    compose:
+      file: ../docker-compose.yml
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      timeout: 2000
+      lettuce:
+        pool:
+          max-active: 100
+          max-idle: 20
+          min-idle: 5
+  cloud:
+    gateway:
+      routes:
+        - id: backend-api
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**
+          filters:
+            - AddResponseHeader=X-Gateway-Service, SchoolDirectoryGateway
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@clientKeyResolver}"
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: ${ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,http://localhost:3000}
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            
+app:
+  rate-limit:
+    package: ${APP_RATE_LIMIT_PACKAGE:SILVER}
+    plans:
+      BRONZE:
+        replenishRate: 20
+        burstCapacity: 200
+        requestedTokens: 1
+      SILVER:
+        replenishRate: 100
+        burstCapacity: 1000
+        requestedTokens: 1
+      GOLD:
+        replenishRate: 400
+        burstCapacity: 5000
+        requestedTokens: 1
+  config:
+    import: optional:file:/home/sarinke/API-SEC/DeVy/schools_saas_cms/School directory listing/dev/schoolDirectoryListing/backend-gateway/.env
+
+  channel:
+    allowed-list: ${CHANNEL_ARRAY_LIST:WEBP,SWIFTY,BANKAPP,MOBILEMONEY,SAMONEY}
+    tier-map:
+      WEBP: ${CHANNEL_TIER_MAP_WEBP:SILVER}
+      SWIFTY: ${CHANNEL_TIER_MAP_SWIFTY:GOLD}
+      BANKAPP: ${CHANNEL_TIER_MAP_BANKAPP:GOLD}
+      MOBILEMONEY: ${CHANNEL_TIER_MAP_MOBILEMONEY:BRONZE}
+      SAMONEY: ${CHANNEL_TIER_MAP_SAMONEY:BRONZE}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    dev.sarinkejohn.gateway: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"
+  endpoint:
+    health:
+      show-details: always
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000 
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+  instances:
+    redisRateLimiter:
+      baseConfig: default
