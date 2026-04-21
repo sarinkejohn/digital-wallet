@@ -1,11 +1,13 @@
-version: '3.8'
+
 
 services:
   postgres:
     image: postgres:16-alpine
     container_name: digital-wallet-db
-    env_file:
-      - .env
+    environment:
+      POSTGRES_DB: digital_wallet_db
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
     ports:
       - "5438:5432"
     volumes:

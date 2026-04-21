@@ -21,7 +21,12 @@ A Spring Boot REST API for a digital wallet system supporting user balances and 
 - Spring Security + JWT
 - Spring Data JPA
 - Lombok
-- OpenAPI 3.0
+- OpenAPI 3.1 (SpringDoc 3.x)
+
+## Prerequisites
+
+- **JDK 25**: The project requires Java 25. Ensure `JAVA_HOME` points to a JDK 25 installation.
+- **Environment Variables**: A `.env` file is required in the root directory. See `.env.example` or the Configuration section for details.
 
 ## Quick Start
 
