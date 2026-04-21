@@ -32,6 +32,7 @@ A Spring Boot REST API for a digital wallet system supporting user balances and 
 --/dev/gateway-headers.md
 
 Also check the design docs you might need drawio extention or directly import .xml file to draw.io
+--for CI/CD github action not icluded for now 
 
 ## Quick Start
 
