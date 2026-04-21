@@ -38,13 +38,20 @@ docker-compose up --build
 
 ### Local Development
 
-```bash
-# Run PostgreSQL
-docker run -d -p 5438:5432 -e POSTGRES_DB=digital_wallet_db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=password postgres:16-alpine
-
-# Run application
-./mvnw spring-boot:run
-```
+1. **Environment Setup**: Ensure you have a `.env` file in the project root.
+2. **Start Database**:
+   ```bash
+   docker run -d -p 5438:5432 -e POSTGRES_DB=digital_wallet_db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=password postgres:16-alpine
+   ```
+3. **Run Application**:
+   Ensure you are using JDK 25:
+   ```bash
+   # Check java version
+   java -version 
+   
+   # Run
+   ./mvnw spring-boot:run
+   ```
 
 ## API Endpoints
 
