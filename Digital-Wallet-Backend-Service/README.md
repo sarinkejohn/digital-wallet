@@ -28,6 +28,11 @@ A Spring Boot REST API for a digital wallet system supporting user balances and 
 - **JDK 25**: The project requires Java 25. Ensure `JAVA_HOME` points to a JDK 25 installation.
 - **Environment Variables**: A `.env` file is required in the root directory. See `.env.example` or the Configuration section for details.
 
+--Also read the file for gateway /dev/backend-gateway/README.md and 
+--/dev/gateway-headers.md
+
+Also check the design docs you might need drawio extention or directly import .xml file to draw.io
+
 ## Quick Start
 
 ### Using Docker
