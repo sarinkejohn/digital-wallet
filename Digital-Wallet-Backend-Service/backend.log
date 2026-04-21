@@ -35,63 +35,130 @@
 
  :: Spring Boot ::                (v4.0.5)
 
-2026-04-21T08:12:54.703+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] d.DigitalWalletBackendServiceApplication : Starting DigitalWalletBackendServiceApplication using Java 25.0.2 with PID 341126 (/home/sarinke/API-SEC/BankingApp/dev/Digital-Wallet-Backend-Service/target/classes started by sarinke in /home/sarinke/API-SEC/BankingApp/dev/Digital-Wallet-Backend-Service)
-2026-04-21T08:12:54.713+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] d.DigitalWalletBackendServiceApplication : The following 1 profile is active: "dev"
-2026-04-21T08:12:54.714+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.SpringApplication               : Loading source class com.sarinkejohn.digitalwalletbackendservice.DigitalWalletBackendServiceApplication
-2026-04-21T08:12:54.861+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@4816278d
-2026-04-21T08:12:57.453+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-04-21T08:12:57.502+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.sarinkejohn.digitalwalletbackendservice'. Automatic @Repository and @Entity scanning is enabled.
-2026-04-21T08:12:57.652+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 173 ms. Found 4 JPA repository interfaces.
-2026-04-21T08:12:59.426+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /home/sarinke/.m2/repository/org/springframework/boot/spring-boot-web-server/4.0.5/spring-boot-web-server-4.0.5.jar
-2026-04-21T08:12:59.427+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /home/sarinke/.m2/repository/org/springframework/boot/spring-boot-web-server/4.0.5/spring-boot-web-server-4.0.5.jar
-2026-04-21T08:12:59.428+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2026-04-21T08:12:59.495+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-04-21T08:12:59.524+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-04-21T08:12:59.525+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
-2026-04-21T08:12:59.670+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2026-04-21T08:12:59.673+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4810 ms
-2026-04-21T08:12:59.795+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105, jwtAuthenticationFilter urls=[/*] order=2147483647
-2026-04-21T08:12:59.795+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
-2026-04-21T08:12:59.859+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
-2026-04-21T08:12:59.863+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
-2026-04-21T08:12:59.864+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] .DelegatingFilterProxyRegistrationBean$1 : Filter 'springSecurityFilterChain' configured for use
-2026-04-21T08:12:59.865+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
-2026-04-21T08:13:00.398+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-04-21T08:13:00.609+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
-2026-04-21T08:13:01.682+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-04-21T08:13:01.800+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-04-21T08:13:02.338+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c7673ae
-2026-04-21T08:13:02.344+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-04-21T08:13:02.556+03:00  WARN 341126 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-04-21T08:13:02.701+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [jdbc:postgresql://localhost:5438/digital_wallet_db]
-	Database driver: PostgreSQL JDBC Driver
+2026-04-21T10:17:47.993+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] d.DigitalWalletBackendServiceApplication : Starting DigitalWalletBackendServiceApplication using Java 25.0.2 with PID 537011 (/home/sarinke/API-SEC/BankingApp/dev/Digital-Wallet-Backend-Service/target/classes started by sarinke in /home/sarinke/API-SEC/BankingApp/dev/Digital-Wallet-Backend-Service)
+2026-04-21T10:17:48.000+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] d.DigitalWalletBackendServiceApplication : The following 1 profile is active: "dev"
+2026-04-21T10:17:48.001+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.SpringApplication               : Loading source class com.sarinkejohn.digitalwalletbackendservice.DigitalWalletBackendServiceApplication
+2026-04-21T10:17:48.106+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext@40317ba2
+2026-04-21T10:17:49.391+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] ySourcesPropertyResolver$DefaultResolver : Found key 'DB_URL' in PropertySource 'systemEnvironment' with value of type String
+2026-04-21T10:17:50.281+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-21T10:17:50.315+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.sarinkejohn.digitalwalletbackendservice'. Automatic @Repository and @Entity scanning is enabled.
+2026-04-21T10:17:50.419+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 4 JPA repository interfaces.
+2026-04-21T10:17:51.498+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /home/sarinke/.m2/repository/org/springframework/boot/spring-boot-web-server/4.0.5/spring-boot-web-server-4.0.5.jar
+2026-04-21T10:17:51.499+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : Code archive: /home/sarinke/.m2/repository/org/springframework/boot/spring-boot-web-server/4.0.5/spring-boot-web-server-4.0.5.jar
+2026-04-21T10:17:51.500+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.t.s.TomcatServletWebServerFactory  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-04-21T10:17:51.557+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-04-21T10:17:51.582+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-21T10:17:51.583+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-21T10:17:51.649+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] b.w.c.s.WebApplicationContextInitializer : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-04-21T10:17:51.650+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3543 ms
+2026-04-21T10:17:51.721+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105, jwtAuthenticationFilter urls=[/*] order=2147483647
+2026-04-21T10:17:51.722+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2026-04-21T10:17:51.767+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.f.OrderedRequestContextFilter    : Filter 'requestContextFilter' configured for use
+2026-04-21T10:17:51.770+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-04-21T10:17:51.771+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] .DelegatingFilterProxyRegistrationBean$1 : Filter 'springSecurityFilterChain' configured for use
+2026-04-21T10:17:51.772+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.s.filter.OrderedFormContentFilter  : Filter 'formContentFilter' configured for use
+2026-04-21T10:17:52.145+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-21T10:17:52.219+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-21T10:17:53.066+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-21T10:17:53.122+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-21T10:17:54.199+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 08001
+2026-04-21T10:17:54.200+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jdbc.error             : Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+2026-04-21T10:17:54.202+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jdbc                   : HHH100046: Could not obtain connection to query JDBC database metadata
+
+org.hibernate.exception.JDBCConnectionException: Unable to obtain isolated JDBC connection [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:80) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:101) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:51) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:366) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironment(JdbcEnvironmentInitiator.java:143) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:120) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:80) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:133) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:260) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:235) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:212) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:44) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:251) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:203) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:172) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1392) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.populateSessionFactoryBuilder(EntityManagerFactoryBuilderImpl.java:1472) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1454) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.6.jar:7.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.6.jar:7.0.6]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.5.jar:4.0.5]
+	at com.sarinkejohn.digitalwalletbackendservice.DigitalWalletBackendServiceApplication.main(DigitalWalletBackendServiceApplication.java:10) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:290) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DataSourceConnectionProvider.getConnection(DataSourceConnectionProvider.java:137) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:508) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:48) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	... 37 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:659) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.10.jar:42.7.10]
+	... 51 common frames omitted
+
+2026-04-21T10:17:54.247+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-21T10:17:54.267+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
 	Database dialect: PostgreSQLDialect
-	Database version: 18.3
-	Default catalog/schema: digital_wallet_db/public
+	Database version: 13.0
+	Default catalog/schema: unknown/unknown
 	Autocommit mode: undefined/unknown
-	Isolation level: READ_COMMITTED [default READ_COMMITTED]
-	JDBC fetch size: none
+	Isolation level: NONE [default NONE]
+	JDBC fetch size: undefined/unknown
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-04-21T08:13:05.630+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-04-21T08:13:05.904+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-04-21T08:13:06.148+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-04-21T08:13:07.157+03:00  WARN 341126 --- [Digital-Wallet-Backend-Service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-04-21T08:13:07.355+03:00  WARN 341126 --- [Digital-Wallet-Backend-Service] [           main] .s.a.UserDetailsServiceAutoConfiguration : 
-
-Using generated security password: 67750f60-f229-45ae-8b83-91c7e7bf8309
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-21T08:13:07.384+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2026-04-21T08:13:08.374+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 17 mappings in 'requestMappingHandlerMapping'
-2026-04-21T08:13:08.528+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2026-04-21T08:13:08.645+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-04-21T08:13:08.827+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-04-21T08:13:09.339+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
-2026-04-21T08:13:09.373+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-04-21T10:17:56.402+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-21T10:17:56.448+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-21T10:17:57.452+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jdbc.error             : HHH000247: ErrorCode: 0, SQLState: 08001
+2026-04-21T10:17:57.452+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] org.hibernate.orm.jdbc.error             : Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+2026-04-21T10:17:57.460+03:00 ERROR 537011 --- [Digital-Wallet-Backend-Service] [           main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+2026-04-21T10:17:57.463+03:00  WARN 537011 --- [Digital-Wallet-Backend-Service] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+2026-04-21T10:17:57.471+03:00  INFO 537011 --- [Digital-Wallet-Backend-Service] [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-04-21T10:17:57.520+03:00 DEBUG 537011 --- [Digital-Wallet-Backend-Service] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -494,8 +561,8 @@ Positive matches:
       - @ConditionalOnMissingBean (types: org.springframework.scheduling.annotation.AsyncConfigurer; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilder matched:
-      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
       - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    TaskExecutorConfigurations.TaskExecutorConfiguration matched:
       - AnyNestedCondition 1 matched 1 did not; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ModelCondition @ConditionalOnProperty (spring.task.execution.mode=force) did not find property 'spring.task.execution.mode'; NestedCondition on TaskExecutorConfigurations.OnExecutorCondition.ExecutorBeanCondition @ConditionalOnMissingBean (types: java.util.concurrent.Executor; SearchStrategy: all) did not find any beans (TaskExecutorConfigurations.OnExecutorCondition)
@@ -510,8 +577,8 @@ Positive matches:
       - @ConditionalOnClass found required class 'org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler' (OnClassCondition)
 
    TaskSchedulingConfigurations.SimpleAsyncTaskSchedulerBuilderConfiguration#simpleAsyncTaskSchedulerBuilder matched:
-      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
       - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+      - @ConditionalOnThreading found PLATFORM (OnThreadingCondition)
 
    TaskSchedulingConfigurations.ThreadPoolTaskSchedulerBuilderConfiguration#threadPoolTaskSchedulerBuilder matched:
       - @ConditionalOnMissingBean (types: org.springframework.boot.task.ThreadPoolTaskSchedulerBuilder; SearchStrategy: all) did not find any beans (OnBeanCondition)
@@ -914,7 +981,7 @@ Negative matches:
 
    TaskExecutorConfigurations.SimpleAsyncTaskExecutorBuilderConfiguration#simpleAsyncTaskExecutorBuilderVirtualThreads:
       Did not match:
-         - @ConditionalOnMissingBean (types: org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder; SearchStrategy: all) found beans of type 'org.springframework.boot.task.SimpleAsyncTaskExecutorBuilder' simpleAsyncTaskExecutorBuilder (OnBeanCondition)
+         - @ConditionalOnThreading did not find VIRTUAL (OnThreadingCondition)
 
    TaskExecutorConfigurations.TaskExecutorConfiguration#applicationTaskExecutorVirtualThreads:
       Did not match:
@@ -1028,274 +1095,101 @@ Unconditional classes:
 
 
 
-2026-04-21T08:13:09.383+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [           main] d.DigitalWalletBackendServiceApplication : Started DigitalWalletBackendServiceApplication in 16.064 seconds (process running for 16.902)
-2026-04-21T08:13:09.386+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2026-04-21T08:13:09.394+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
-2026-04-21T08:21:11.251+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-21T08:21:11.251+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-04-21T08:21:11.251+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
-2026-04-21T08:21:11.251+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
-2026-04-21T08:21:11.253+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3285c141
-2026-04-21T08:21:11.254+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@297da2c3
-2026-04-21T08:21:11.254+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2026-04-21T08:21:11.254+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2026-04-21T08:21:11.280+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/actuator/health", parameters={}
-2026-04-21T08:21:11.289+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
-2026-04-21T08:21:11.300+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
-2026-04-21T08:21:11.306+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T08:21:11.332+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T08:21:11.334+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T08:21:11.306899662, status=500}]
-2026-04-21T08:21:11.417+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource actuator/health for request '/actuator/health'.]
-2026-04-21T08:21:11.420+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T08:21:21.521+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui.html", parameters={}
-2026-04-21T08:21:21.525+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc#redirectToUi(HttpServletRequest)
-2026-04-21T08:21:21.598+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T08:21:21.598+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
-2026-04-21T08:21:21.600+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
-2026-04-21T08:22:15.798+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.apache.tomcat.util.http.parser.Cookie  : A cookie header was received [ecom_cookie={"level":["necessary"],"revision":0,"data":null,"rfc_cookie":false};] that contained an invalid cookie. That cookie will be ignored.
- Note: further occurrences of this error will be logged at DEBUG level.
-2026-04-21T08:22:15.804+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui.html", parameters={}
-2026-04-21T08:22:15.805+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc#redirectToUi(HttpServletRequest)
-2026-04-21T08:22:15.811+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T08:22:15.814+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
-2026-04-21T08:22:15.815+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
-2026-04-21T08:22:15.838+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
-2026-04-21T08:22:15.843+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.853+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:15.901+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui.css", parameters={}
-2026-04-21T08:22:15.903+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.css", parameters={}
-2026-04-21T08:22:15.904+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.905+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.908+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-04-21T08:22:15.908+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-04-21T08:22:15.910+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.911+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.912+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-04-21T08:22:15.914+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:15.915+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:15.921+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:15.930+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:15.969+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:15.979+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:16.445+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api-docs/swagger-config", parameters={}
-2026-04-21T08:22:16.446+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2026-04-21T08:22:16.450+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
-2026-04-21T08:22:16.451+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-redir (truncated)...]
-2026-04-21T08:22:16.451+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/favicon-32x32.png", parameters={}
-2026-04-21T08:22:16.454+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T08:22:16.455+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:16.459+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T08:22:16.491+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api-docs", parameters={}
-2026-04-21T08:22:16.493+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-04-21T08:22:16.987+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T08:22:16.988+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, */*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T08:22:16.989+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T08:22:16.988327104, status=500}]
-2026-04-21T08:22:16.990+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
-2026-04-21T08:22:16.991+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T09:51:50.940+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/api/auth/register", parameters={}
-2026-04-21T09:51:50.941+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.sarinkejohn.digitalwalletbackendservice.controller.AuthController#register(RegisterRequest)
-2026-04-21T09:51:51.172+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [RegisterRequest(username=john, password=Secure123)]
-2026-04-21T09:51:52.291+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] org.hibernate.SQL                        : 
-    select
-        u1_0.id 
-    from
-        users u1_0 
-    where
-        u1_0.username=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    select
-        u1_0.id 
-    from
-        users u1_0 
-    where
-        u1_0.username=? 
-    fetch
-        first ? rows only
-2026-04-21T09:51:52.692+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] org.hibernate.SQL                        : 
-    select
-        u1_0.id 
-    from
-        users u1_0 
-    where
-        u1_0.username=? 
-    fetch
-        first ? rows only
-Hibernate: 
-    select
-        u1_0.id 
-    from
-        users u1_0 
-    where
-        u1_0.username=? 
-    fetch
-        first ? rows only
-2026-04-21T09:51:52.783+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] org.hibernate.SQL                        : 
-    insert 
-    into
-        users
-        (password, role, username) 
-    values
-        (?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        users
-        (password, role, username) 
-    values
-        (?, ?, ?)
-2026-04-21T09:51:52.824+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] org.hibernate.SQL                        : 
-    insert 
-    into
-        wallets
-        (balance, user_id) 
-    values
-        (?, ?)
-Hibernate: 
-    insert 
-    into
-        wallets
-        (balance, user_id) 
-    values
-        (?, ?)
-2026-04-21T09:51:52.834+03:00  INFO 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] c.s.d.service.WalletService              : Created user john with wallet
-2026-04-21T09:51:52.890+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] org.hibernate.SQL                        : 
-    select
-        u1_0.id,
-        u1_0.password,
-        u1_0.role,
-        u1_0.username 
-    from
-        users u1_0 
-    where
-        u1_0.username=?
-Hibernate: 
-    select
-        u1_0.id,
-        u1_0.password,
-        u1_0.role,
-        u1_0.username 
-    from
-        users u1_0 
-    where
-        u1_0.username=?
-2026-04-21T09:51:53.070+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T09:51:53.071+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [AuthResponse(token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huIiwicm9sZSI6IlVTRVIiLCJ1c2VySWQiOjEsImlhdCI6 (truncated)...]
-2026-04-21T09:51:53.101+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.137+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
-2026-04-21T10:02:50.139+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.143+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.201+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui.css", parameters={}
-2026-04-21T10:02:50.201+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.css", parameters={}
-2026-04-21T10:02:50.202+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.203+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.206+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-04-21T10:02:50.207+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-04-21T10:02:50.207+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-04-21T10:02:50.208+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.209+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.211+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.212+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.213+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.218+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.229+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.252+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.641+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api-docs/swagger-config", parameters={}
-2026-04-21T10:02:50.642+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2026-04-21T10:02:50.644+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
-2026-04-21T10:02:50.644+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-redir (truncated)...]
-2026-04-21T10:02:50.646+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.653+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/favicon-32x32.png", parameters={}
-2026-04-21T10:02:50.655+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:50.659+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:50.679+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api-docs", parameters={}
-2026-04-21T10:02:50.680+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-04-21T10:02:50.860+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T10:02:50.861+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, */*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:02:50.862+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T10:02:50.861161644, status=500}]
-2026-04-21T10:02:50.864+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
-2026-04-21T10:02:50.865+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T10:02:52.292+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
-2026-04-21T10:02:52.294+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.299+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.350+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui.css", parameters={}
-2026-04-21T10:02:52.353+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.css", parameters={}
-2026-04-21T10:02:52.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-04-21T10:02:52.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-04-21T10:02:52.359+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.359+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.360+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-04-21T10:02:52.361+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.363+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.366+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.367+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.373+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.398+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.631+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api-docs/swagger-config", parameters={}
-2026-04-21T10:02:52.632+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2026-04-21T10:02:52.634+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
-2026-04-21T10:02:52.634+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-redir (truncated)...]
-2026-04-21T10:02:52.636+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.639+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/favicon-32x32.png", parameters={}
-2026-04-21T10:02:52.641+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:02:52.647+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:02:52.658+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api-docs", parameters={}
-2026-04-21T10:02:52.659+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-04-21T10:02:52.759+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T10:02:52.760+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, */*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:02:52.761+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T10:02:52.760404638, status=500}]
-2026-04-21T10:02:52.762+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
-2026-04-21T10:02:52.762+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T10:05:28.459+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui", parameters={}
-2026-04-21T10:05:28.461+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:05:28.463+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
-2026-04-21T10:05:28.465+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T10:05:28.467+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:05:28.468+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T10:05:28.466106183, status=500}]
-2026-04-21T10:05:28.470+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource swagger-ui for request '/swagger-ui'.]
-2026-04-21T10:05:28.471+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T10:05:39.975+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api-docs", parameters={}
-2026-04-21T10:05:39.977+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-04-21T10:05:40.090+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T10:05:40.091+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:05:40.092+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T10:05:40.091311842, status=500}]
-2026-04-21T10:05:40.093+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
-2026-04-21T10:05:40.093+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
-2026-04-21T10:06:02.690+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui.html", parameters={}
-2026-04-21T10:06:02.691+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc#redirectToUi(HttpServletRequest)
-2026-04-21T10:06:02.694+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:06:02.694+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
-2026-04-21T10:06:02.694+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
-2026-04-21T10:06:02.704+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
-2026-04-21T10:06:02.706+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.711+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:02.756+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui.css", parameters={}
-2026-04-21T10:06:02.757+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.css", parameters={}
-2026-04-21T10:06:02.757+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.758+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.760+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2026-04-21T10:06:02.761+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2026-04-21T10:06:02.761+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
-2026-04-21T10:06:02.761+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.762+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.764+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:02.764+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:02.766+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2026-04-21T10:06:02.770+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:02.772+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:02.796+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:03.181+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api-docs/swagger-config", parameters={}
-2026-04-21T10:06:03.182+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2026-04-21T10:06:03.184+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
-2026-04-21T10:06:03.184+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-redir (truncated)...]
-2026-04-21T10:06:03.185+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
-2026-04-21T10:06:03.232+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/api-docs", parameters={}
-2026-04-21T10:06:03.233+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2026-04-21T10:06:03.355+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.sarinkejohn.digitalwalletbackendservice.exception.GlobalExceptionHandler#handleGenericException(Exception)
-2026-04-21T10:06:03.356+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, */*] and supported [application/json, application/*+json, application/yaml]
-2026-04-21T10:06:03.356+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=An unexpected error occurred, timestamp=2026-04-21T10:06:03.355688174, status=500}]
-2026-04-21T10:06:03.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
-2026-04-21T10:06:03.357+03:00 DEBUG 341126 --- [Digital-Wallet-Backend-Service] [io-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
+2026-04-21T10:17:57.558+03:00 ERROR 537011 --- [Digital-Wallet-Backend-Service] [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.6.jar:7.0.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.6.jar:7.0.6]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.5.jar:4.0.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.5.jar:4.0.5]
+	at com.sarinkejohn.digitalwalletbackendservice.DigitalWalletBackendServiceApplication.main(DigitalWalletBackendServiceApplication.java:10) ~[classes/:na]
+Caused by: jakarta.persistence.PersistenceException: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:448) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.6.jar:7.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.6.jar:7.0.6]
+	... 15 common frames omitted
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:80) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:34) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:115) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:101) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:71) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:37) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:61) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:41) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:36) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:73) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:63) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.extract.internal.CachingDatabaseInformationImpl.<init>(CachingDatabaseInformationImpl.java:43) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.buildDatabaseInformation(GroupedSchemaMigratorImpl.java:112) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:83) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:269) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:323) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:437) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1456) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.6.jar:7.0.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.6.jar:7.0.6]
+	... 19 common frames omitted
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:290) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.10.jar:42.7.10]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DataSourceConnectionProvider.getConnection(DataSourceConnectionProvider.java:137) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:508) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:44) ~[hibernate-core-7.2.7.Final.jar:7.2.7.Final]
+	... 41 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:659) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.10.jar:42.7.10]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.10.jar:42.7.10]
+	... 55 common frames omitted
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.613 s
+[INFO] Finished at: 2026-04-21T10:17:57+03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.5:run (default-cli) on project Digital-Wallet-Backend-Service: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
