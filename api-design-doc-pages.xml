@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-04-21T09:10:00+03:00" agent="Kilo CLI" version="26.0.2" type="device">
+
+  <!-- ==================== DIAGRAM 1: POST /api/auth/register ==================== -->
+  <diagram id="d1" name="POST /api/auth/register">
+    <mxGraphModel dx="1600" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AuthController&lt;/b&gt;&lt;br&gt;register()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;AuthService&lt;/b&gt;&lt;br&gt;register()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;Repositories&lt;/b&gt;&lt;br&gt;UserRepository&lt;br&gt;WalletRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SQL" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 2: POST /api/auth/login ==================== -->
+  <diagram id="d2" name="POST /api/auth/login">
+    <mxGraphModel dx="1600" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AuthController&lt;/b&gt;&lt;br&gt;login()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;AuthService&lt;/b&gt;&lt;br&gt;login()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;UserRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SQL" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 3: GET /api/wallet/balance ==================== -->
+  <diagram id="d3" name="GET /api/wallet/balance">
+    <mxGraphModel dx="1800" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;getBalance()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;getWalletByUserId()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;WalletRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="query" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SELECT" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 4: POST /api/wallet/transfer ==================== -->
+  <diagram id="d4" name="POST /api/wallet/transfer">
+    <mxGraphModel dx="1850" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;transfer()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;transfer()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;Repositories&lt;/b&gt;&lt;br&gt;WalletRepository&lt;br&gt;TransactionsRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SQL" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 5: POST /api/wallet/topup/request ==================== -->
+  <diagram id="d5" name="POST /api/wallet/topup/request">
+    <mxGraphModel dx="1800" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;requestTopUp()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;requestTopUp()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;TopUpRequestRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="INSERT" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 6: GET /api/wallet/transactions ==================== -->
+  <diagram id="d6" name="GET /api/wallet/transactions">
+    <mxGraphModel dx="1800" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;getTransactions()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;getUserTransactions()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;TransactionsRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SELECT" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 7: POST /api/admin/topup ==================== -->
+  <diagram id="d7" name="POST /api/admin/topup">
+    <mxGraphModel dx="1850" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;(ROLE_ADMIN)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;adminTopUp()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;adminTopUp()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;Repositories&lt;/b&gt;&lt;br&gt;WalletRepository&lt;br&gt;TransactionsRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="140" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SQL" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 8: GET /api/admin/topup/requests ==================== -->
+  <diagram id="d8" name="GET /api/admin/topup/requests">
+    <mxGraphModel dx="1800" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;(ROLE_ADMIN)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;getPendingTopUpRequests()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;getPendingTopUpRequests()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;TopUpRequestRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SELECT" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 9: POST /api/admin/topup/requests/{id}/approve ==================== -->
+  <diagram id="d9" name="POST /api/admin/topup/requests/{id}/approve">
+    <mxGraphModel dx="1900" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;(ROLE_ADMIN)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;approveTopUpRequest()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;approveTopUpRequest()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;Repositories&lt;/b&gt;&lt;br&gt;TopUpRequestRep&lt;br&gt;WalletRepository&lt;br&gt;TransactionsRep" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="100" width="140" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SQL" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 10: POST /api/admin/topup/requests/{id}/reject ==================== -->
+  <diagram id="d10" name="POST /api/admin/topup/requests/{id}/reject">
+    <mxGraphModel dx="1850" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;(ROLE_ADMIN)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;rejectTopUpRequest()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;rejectTopUpRequest()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;TopUpRequestRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="910" y="100" width="140" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="UPDATE" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ==================== DIAGRAM 11: GET /api/admin/wallet/{userId} ==================== -->
+  <diagram id="d11" name="GET /api/admin/wallet/{userId}">
+    <mxGraphModel dx="1800" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="client" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gateway" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;(JWT Check,&lt;br&gt;Rate Limit)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="230" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="authfilter" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;(ROLE_ADMIN)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="100" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="controller" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;getUserWallet()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="&lt;b&gt;WalletService&lt;/b&gt;&lt;br&gt;getWalletByUserId()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repository" value="&lt;b&gt;WalletRepository&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="100" width="120" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="database" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="110" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="HTTPS" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;" value="GET/SET tokens" edge="1" parent="1" source="gateway" target="redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="forward" edge="1" parent="1" source="gateway" target="authfilter">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="authenticate" edge="1" parent="1" source="authfilter" target="controller">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="controller" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="call" edge="1" parent="1" source="service" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" value="SELECT" edge="1" parent="1" source="repository" target="database">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+</mxfile>

@@ -2,9 +2,10 @@ server:
   port: 9090
 
 spring:
+
   docker:
     compose:
-      file: ../docker-compose.yml
+      enabled: false
   data:
     redis:
       host: ${SPRING_REDIS_HOST:localhost}
@@ -19,7 +20,7 @@ spring:
     gateway:
       routes:
         - id: backend-api
-          uri: http://localhost:8081
+          uri: http://localhost:8080
           predicates:
             - Path=/api/**
           filters:
