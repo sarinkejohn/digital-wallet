@@ -6,16 +6,12 @@ services:
     container_name: digital-wallet-db
     env_file:
       - .env
-    environment:
-      POSTGRES_DB: ${DB_DB:digital_wallet_db}
-      POSTGRES_USER: ${DB_USER:test}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:password}
     ports:
       - "5438:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:test}"]
+      test: ["CMD-SHELL", "pg_isready -U test"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -29,12 +25,10 @@ services:
       - .env
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_DB}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER:test}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:password}
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: ${DB_DRIVER:org.postgresql.Driver}
-      JWT_SECRET: ${JWT_SECRET:vKfpYdAO5UT1MXr3Z4l9ySFU3gJ2pzTY54nD+fSGTNw=}
-      JWT_EXPIRATION: ${JWT_EXPIRATION:86400000}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/digital_wallet_db
+      SPRING_DATASOURCE_USERNAME: test
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
     ports:
       - "8080:8080"
     depends_on:
