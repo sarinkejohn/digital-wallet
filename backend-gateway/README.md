@@ -1,106 +1,157 @@
-# API Gateway - Tiered Rate Limiting & Security
+# API Gateway - Security & Rate Limiting
 
-This service acts as the central API Gateway built upon **Spring Cloud Gateway**. It robustly handles identity resolution, rate limiting, circuit breaking, and resilience for all upstream services using Redis and OAuth2 constructs.
+This service acts as the central API Gateway built upon **Spring Cloud Gateway**. It provides request validation, JWT authentication, channel binding enforcement, and tiered rate limiting.
 
 ## Features
 
-- **Tiered Dynamic Rate Limiting**: Built on top of Spring Data Redis utilizing Lua scripts, enforcing limits per-client based on packages (`BRONZE`, `SILVER`, `GOLD`).
-- **OAuth2 Identity Resolution**: Natively extracts client IDs (`sub` claims) from JWT tokens acting securely via `spring-boot-starter-oauth2-resource-server`.
-- **In-Memory Caching (Caffeine)**: Limits the overhead of Redis by caching client tier mappings locally for up to 60 seconds manually.
-- **Fail-Open Local Resilience**: Wrapped by **Resilience4j Circuit Breakers**, any Redis outages cascade gracefully into a local `Caffeine` counter fallback restricting usage to *5 global requests per minute* iteratively.
-- **Observability**: Directly instrumented with Micrometer, exposing rich `.prometheus` metric data continuously without spamming log layers.
+### 1. Request Header Validation
+Validates mandatory headers on every request:
+- `Content-Type`: Required for POST/PUT
+- `Channel`: Required (WEBP, SWIFTY, BANKAPP, MOBILEMONEY, SAMONEY)
+- `AppId`: Required
+- `AppVersion`: Required
+- `RequestId`: Required (UUID)
+
+Returns `400 Bad Request` if validation fails.
+
+### 2. Channel Binding Security
+Ensures JWT tokens are only usable within their issued channel:
+- Token must include `channel` claim
+- Request `Channel` header must match token's channel
+- Returns `403 Forbidden` on mismatch
+
+This prevents token theft across channels.
+
+### 3. JWT Authentication
+- Validates Bearer tokens using HMAC SHA-256
+- Extracts claims: `sub`, `role`, `userId`, `channel`
+- Passes to backend via headers
+
+### 4. Tiered Rate Limiting
+Per-channel tiers with configurable limits:
+- **BRONZE** (MOBILEMONEY, SAMONEY): 20 req/s, 200 burst
+- **SILVER** (WEBP): 100 req/s, 1000 burst
+- **GOLD** (SWIFTY, BANKAPP): 400 req/s, 5000 burst
 
 ---
 
-## Configuration
+## Architecture
 
-The default `.env` layout controls the environment constraints:
-```env
-# Gateway Port
-SERVER_PORT=9090
-
-# The default Rate Limiting Package Fallback
-APP_RATE_LIMIT_PACKAGE=SILVER
-
-# Redis Details
-SPRING_REDIS_HOST=localhost
-SPRING_REDIS_PORT=6379
-
-# The JWT Secret Signature validating Authorization requests
-JWT_SECRET=Z1hyWHRoZVRyeVNlY3JldEtleUZvckpXVFRva2VuR2VuZXJhdGlvbnZhbGlkYXRpb24xMjM=
+```
+Client Request
+     ↓
+┌─────────────────────────────────┐
+│  Gateway (Port 9090)              │
+├─────────────────────────────────┤
+│  1. JsonSchemaValidationFilter   │ ← Validate headers
+│  2. ChannelValidationFilter    │ ← Channel binding
+│  3. RequestRateLimiter       │ ← Rate limiting
+│  4. Route                   │ ← Proxy to backend
+└─────────────────────────────────┘
+     ↓
+Backend (Port 8080)
 ```
 
-### Rate Limiting Tiers
-Constraints are injected dynamically through `application.yaml`:
-- **BRONZE**: 1 request per second, 1 burst capability.
-- **SILVER**: 10 requests per second, 20 burst capability.
-- **GOLD**: 50 requests per second, 100 burst capability.
+---
 
-By default, an unknown user consumes the metric set by `APP_RATE_LIMIT_PACKAGE`. However, overrides are fully supported by inserting custom flags natively onto Redis: `SET rate_limit_tier:{clientId} GOLD`.
+## Headers Required
+
+| Header | Required | Values |
+|--------|----------|--------|
+| `Content-Type` | POST/PUT | `application/json` |
+| `Channel` | Always | `WEBP`, `SWIFTY`, `BANKAPP`, `MOBILEMONEY`, `SAMONEY` |
+| `AppId` | Always | Any string |
+| `AppVersion` | Always | Semver (e.g., `1.0.0`) |
+| `RequestId` | Always | UUID |
+| `Authorization` | Protected | `Bearer <jwt>` |
 
 ---
 
-## Running the Application
+## Running
 
-### 1. Boot up Redis natively
-Use Docker Compose to deploy the Redis instance gracefully.
+### Docker Compose
 ```bash
-docker-compose up -d school-directory-gateway-redis
+docker compose up --build
 ```
 
-### 2. Build and Execute the Gateway
-Ensure you have `Java 17` compiled into your environment variables.
+### Manual
 ```bash
 ./mvnw clean package -DskipTests
 java -jar target/gateway-demo-0.0.1-SNAPSHOT.jar
 ```
-Or simply use:
-```bash
-./mvnw spring-boot:run
+
+---
+
+## Environment Variables
+
+```env
+# Gateway
+SERVER_PORT=9090
+
+# Redis (for rate limiting)
+SPRING_REDIS_HOST=localhost
+SPRING_REDIS_PORT=6379
+
+# JWT Secret (must match backend)
+JWT_SECRET=mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm
+
+# Rate Limiting
+APP_RATE_LIMIT_PACKAGE=SILVER
 ```
 
 ---
 
-## Testing API Integrations
+## Response Codes
 
-### Hitting the Gateway
-By default, the gateway binds to `http://localhost:8080` and redirects `/api/**` traffic properly to backend hosts connected on port `8081`. 
-
-### Identity Usage
-The `TieredDynamicRateLimiter` isolates the user identifier based on 3 priorities:
-1. **OAuth2 Bearer Token**: Using `Authorization: Bearer <token>`. The system automatically decrypts the HMAC SHA-256 signature from `JWT_SECRET` natively reading out the `.sub` identity scope.
-2. **Custom Header**: Supplying an `AppId: <custom-id>` Header in regular endpoints.
-3. **Guest IP**: Routing defaults to utilizing the IP Request structure if no identity strings exist natively.
-
-#### Standard Test Hit
-```bash
-curl -i -H "AppId: test-user" http://localhost:9090/api/schools/list
-```
-
-### Simulating Limits (HTTP 429)
-In order to test the Tier Limits:
-1. Supply `APP_RATE_LIMIT_PACKAGE=BRONZE` inside your `.env` securely.
-2. Rapidly hit the `/api/` endpoint using `curl` continuously multiple times within the identical second span.
-3. You will natively receive `HTTP/1.1 429 Too Many Requests` denoting the exhaustion of the Token Bucket alongside your payload dropping.
-
-### Simulating Redis Disaster Resilience (Local Circuit Breaking)
-To test the `Fail Open` metrics caching architecture:
-1. Continuously curl the endpoints successfully proving routing functions securely.
-2. Stop the overarching Redis container: `docker stop school-directory-gateway-redis`.
-3. Hit the Endpoint again! It natively wraps gracefully onto the `CacheService Local Counter` logic! 
-4. Attempt making `6` requests straight into the application bounds under a minute, which safely kicks an immediate drop `429 Too Many Requests` verifying abuse vectors have been completely nullified.
+| Code | Meaning |
+|------|---------|
+| 400 | Missing/invalid headers |
+| 401 | Missing/invalid JWT |
+| 403 | Channel mismatch |
+| 404 | Not found |
+| 423 | Rate limited (Redis locked) |
+| 429 | Rate limit exceeded |
+| 500 | Backend error |
 
 ---
 
-## Metrics Observability
+## Metrics
 
-The `TieredDynamicRateLimiter` internally populates native Counter properties natively tracking block/allow metrics via Spring Boot Actuators directly.
-
-Access the Prometheus structured readout metrics globally at:
-`GET http://localhost:9090/actuator/prometheus`
-
-Look for the distinct counters natively attached inside the output structure:
+Access Prometheus metrics:
+```bash
+curl http://localhost:9090/actuator/prometheus
 ```
-rate_limit_allowed_total_total
-rate_limit_blocked_total_total
+
+Key metrics:
+- `rate_limit_allowed_total` - Requests allowed
+- `rate_limit_blocked_total` - Requests blocked
+
+---
+
+## Reusable Components
+
+| Component | File | Reusable? |
+|-----------|------|-----------|
+| `JsonSchemaValidationFilter` | `filter/JsonSchemaValidationFilter.java` | ✅ Yes |
+| `ChannelValidationFilter` | `filter/ChannelValidationFilter.java` | ✅ Yes |
+| `TieredDynamicRateLimiter` | `config/TieredDynamicRateLimiter.java` | ✅ Yes |
+| `ChannelProperties` | `config/ChannelProperties.java` | ✅ Yes |
+
+To reuse in another project:
+1. Add gateway dependency
+2. Configure routes in `application.yaml`
+3. Add filters to route
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: my-api
+          uri: http://backend:8080
+          predicates:
+            - Path=/api/**
+          filters:
+            - JsonSchemaValidationFilter
+            - ChannelValidationFilter
 ```
