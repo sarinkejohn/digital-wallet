@@ -11512,3 +11512,7 @@ Unconditional classes:
 2026-04-21T11:07:27.426+03:00 DEBUG 354767 --- [     parallel-2] a.w.r.e.AbstractErrorWebExceptionHandler : [6fb1f95c-12] Resolved [NoResourceFoundException: 404 NOT_FOUND "No static resource swagger-ui/index.html."] for HTTP GET /swagger-ui/index.html
 2026-04-21T11:07:27.427+03:00 DEBUG 354767 --- [     parallel-2] o.s.core.codec.CharSequenceEncoder       : [6fb1f95c-12] Writing "<html><body><h1>Whitelabel Error Page</h1><p>This application has no configured error view, so you a (truncated)..."
 2026-04-21T11:07:27.431+03:00 DEBUG 354767 --- [     parallel-2] o.s.w.s.adapter.HttpWebHandlerAdapter    : [6fb1f95c-12] Completed 404 NOT_FOUND
+2026-04-21T17:49:05.687+03:00 DEBUG 354767 --- [ionShutdownHook] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2026-04-21T17:49:05.688+03:00 DEBUG 354767 --- [ionShutdownHook] onfigReactiveWebServerApplicationContext : Closing org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext@1bab24a1, started on Tue Apr 21 10:36:31 EAT 2026
+2026-04-21T17:49:05.692+03:00  INFO 354767 --- [ionShutdownHook] o.s.b.w.embedded.netty.GracefulShutdown  : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-21T17:49:05.694+03:00  INFO 354767 --- [ netty-shutdown] o.s.b.w.embedded.netty.GracefulShutdown  : Graceful shutdown complete

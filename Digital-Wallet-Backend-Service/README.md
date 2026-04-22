@@ -35,6 +35,7 @@ Also check the design docs you might need drawio extention or directly import .x
 --for CI/CD github action not icluded for now 
 
 ## Quick Start
+./mvnw clean package -DskipTests
 
 ### Using Docker
 

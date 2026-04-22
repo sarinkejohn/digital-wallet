@@ -1,10 +1,16 @@
-FROM eclipse-temurin:25-jdk-alpine AS build
-WORKDIR /app
-COPY . .
-RUN chmod +x mvnw && ./mvnw clean package -DskipTests
+# =========================
+# Build stage is done outside Docker (recommended)
+# =========================
 
 FROM eclipse-temurin:25-jre-alpine
+
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+
+# Copy the built JAR (from target folder)
+COPY target/*.jar app.jar
+
+# Expose Spring Boot port
 EXPOSE 8080
+
+# Run application
 ENTRYPOINT ["java", "-jar", "app.jar"]

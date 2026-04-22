@@ -1,6 +1,7 @@
-
+version: '3.8'
 
 services:
+
   postgres:
     image: postgres:16-alpine
     container_name: digital-wallet-db
@@ -17,6 +18,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - wallet-network
 
   app:
     build:
@@ -36,6 +39,24 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - wallet-network
+    restart: unless-stopped
+
+  # Jaeger (Tracing)
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP
+    networks:
+      - wallet-network
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+
+networks:
+  wallet-network:
+    driver: bridge
