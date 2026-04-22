@@ -32,6 +32,7 @@ spring:
             - name: RequestRateLimiter
               args:
                 key-resolver: "#{@clientKeyResolver}"
+            - name: ChannelValidationFilter
 
       globalcors:
         cors-configurations:

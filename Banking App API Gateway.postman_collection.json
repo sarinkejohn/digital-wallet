@@ -1,0 +1,1025 @@
+{
+  "info": {
+    "_postman_id": "c7d90969-3e5d-4e35-b13a-8f1aa91a59ae",
+    "name": "Banking App API Gateway",
+    "description": "Digital Wallet Backend through API Gateway\n\nBase URL: http://localhost:9090\n\nFeatures: JWT Auth, Tiered Rate Limiting (Redis), Request Validation\n\nHeaders enforced by gateway:\n- Content-Type: application/json\n- Channel: WEBP | SWIFTY | BANKAPP | MOBILEMONEY | SAMONEY\n- AppId: <string>\n- AppVersion: <semver>\n- RequestId: <uuid>\n- Authorization: Bearer <jwt> (protected endpoints only)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12647236",
+    "_collection_link": "https://go.postman.co/collection/12647236-c7d90969-3e5d-4e35-b13a-8f1aa91a59ae?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "POST Register New User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Capture token and user details for later use",
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set(\"authToken\", json.token);",
+                  "    pm.environment.set(\"userId\", json.userId);",
+                  "    pm.environment.set(\"username\", json.username);",
+                  "    console.log('Registered user:', json.username, 'ID:', json.userId);",
+                  "} else {",
+                  "    console.log('Registration failed:', json);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/auth/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Register a new user. Creates User + Wallet (balance 0.0). Returns JWT token.\n\n**Validation**:\n- username: @NotBlank, @Size(min=3, max=50)\n- password: @NotBlank, @Size(min=6)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set(\"authToken\", json.token);",
+                  "    pm.environment.set(\"userId\", json.userId);",
+                  "    pm.environment.set(\"role\", json.role);",
+                  "    console.log('Logged in as:', json.username);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin_1776866324628\",\n  \"password\": \"SecurePass123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticate and receive JWT token.\n\n**Note**: Credentials must match registered user.\n\n\n**Response**: AuthResponse{token, username, role, userId}"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Register Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set(\"adminToken\", json.token);",
+                  "    pm.environment.set(\"adminUserId\", json.userId);",
+                  "    console.log('Registered admin:', json.username, 'ID:', json.userId);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{adminUsername}}\",\n  \"password\": \"{{adminPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/auth/admin/register",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "auth",
+                "admin",
+                "register"
+              ]
+            },
+            "description": "Register a new admin user. Creates User + Wallet with role ADMIN. Returns JWT token.\n\n**Note**: Requires backend access. Returns token with role=ADMIN.\n\n**Validation**:\n- username: @NotBlank, @Size(min=3, max=50)\n- password: @NotBlank, @Size(min=6)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Public endpoints – no JWT required"
+    },
+    {
+      "name": "2. Wallet Endpoints",
+      "item": [
+        {
+          "name": "GET Balance",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var data = pm.response.json();",
+                  "    pm.environment.set(\"walletId\", data.id);",
+                  "    pm.environment.set(\"balance\", data.balance);",
+                  "    console.log('Balance:', data.balance);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/wallet/balance",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "wallet",
+                "balance"
+              ]
+            },
+            "description": "Get current wallet balance.\n\n**Security**: Authenticated (any role)\n**Response**: WalletDto{id, userId, username, balance}\n\n**Errors**:\n- 401: No/invalid JWT\n- 404: Wallet not found"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Transfer Funds",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set(\"lastTransactionId\", json.id);",
+                  "    console.log('Transfer successful:', json.amount, 'to', json.receiverId);",
+                  "} else {",
+                  "    console.log('Transfer failed:', json);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiverId\": {{receiverId}},\n  \"amount\": {{amount}},\n  \"reference\": \"{{transferRef}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/wallet/transfer",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "wallet",
+                "transfer"
+              ]
+            },
+            "description": "Transfer funds to another user.\n\n**Validation**:\n- amount ≥ 1.0 (minTransferAmount)\n- amount ≤ 100,000 (maxTransferAmount)\n- reference must be unique (idempotency)\n\n**Business Rules**:\n- Sender balance must be sufficient\n- Creates Transaction record (type=TRANSFER)\n- Deducts sender, credits receiver in single @Transactional\n\n**Response**: TransactionDto{id, senderId, receiverId, amount, type, reference, createdAt}\n\n**Errors**:\n- 400: Invalid amount / Insufficient funds\n- 404: Wallet not found\n- 409: Duplicate reference"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Request Top-Up",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    pm.environment.set(\"topUpRequestId\", json.id);",
+                  "    console.log('Top-up requested:', json.amount, 'status:', json.status);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": {{topupAmount}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/wallet/topup/request",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "wallet",
+                "topup",
+                "request"
+              ]
+            },
+            "description": "Create a top-up request (requires ADMIN approval).\n\n**Validation**:\n- amount > 0\n- amount ≤ 1,000,000 (wallet.topup.max-amount)\n\n**Flow**:\n1. Creates TopUpRequest with status=PENDING\n2. Admin approves → Wallet credited + Transaction created (type=TOP_UP)\n3. Admin rejects → Status set to REJECTED\n\n**Response**: TopUpResponseDto{id, userId, amount, status, createdAt}\n\n**Errors**:\n- 400: Invalid amount"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Transaction History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 200) {",
+                  "    console.log('Transactions count:', json.length);",
+                  "    if (json.length > 0) {",
+                  "        console.log('Latest transaction:', json[0]);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Channel",
+                "value": "{{channel}}",
+                "type": "text"
+              },
+              {
+                "key": "AppId",
+                "value": "{{appId}}",
+                "type": "text"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}",
+                "type": "text"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/wallet/transactions",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "wallet",
+                "transactions"
+              ]
+            },
+            "description": "Get user's transaction history (sent & received).\n\n**Returns**: List<TransactionDto> ordered by createdAt DESC.\n\n**Transaction Types**:\n- TRANSFER: Money sent/received\n- TOP_UP: Admin credit to wallet\n\n**No parameters required** – identity from JWT token."
+          },
+          "response": []
+        }
+      ],
+      "description": "Require JWT (Authorization: Bearer <token>)\n\nChannel tier affects rate limits:\n- WEBP: SILVER (100 req/s)\n- SWIFTY/BANKAPP: GOLD (400 req/s)\n- MOBILEMONEY/SAMONEY: BRONZE (20 req/s)"
+    },
+    {
+      "name": "3. Admin Endpoints",
+      "item": [
+        {
+          "name": "POST Direct Top-Up (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 201) {",
+                  "    console.log('Admin top-up completed:', json.amount, 'to user', json.receiverId);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Channel",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppId",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{targetUserId}},\n  \"amount\": 5000,\n  \"reference\": \"{{adminRef}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:9090/api/admin/topup",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "admin",
+                "topup"
+              ]
+            },
+            "description": "Admin directly credits a user's wallet (no approval needed).\n\n**Validation**:\n- userId must exist\n- amount > 0\n- reference unique (auto-generated if omitted)\n\n**Flow**:\n1. Validates amount limits\n2. Check for duplicate reference (idempotency)\n3. Credits wallet immediately (UPDATE wallets SET balance = balance + ?)\n4. Creates Transaction record (type=TOP_UP)\n\n**Response**: TransactionDto{id, senderId=null, receiverId=userId, amount, type=TOP_UP, reference, createdAt}\n\n**Errors**:\n- 400: Invalid amount / Duplicate reference\n- 404: User wallet not found\n- 403: Non-ADMIN user"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Pending Top-Up Requests",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 200) {",
+                  "    console.log('Pending top-up requests:', json.length);",
+                  "    if (json.length > 0) {",
+                  "        pm.environment.set(\"pendingRequestId\", json[0].id);",
+                  "        console.log('First pending request ID:', json[0].id, 'amount:', json[0].amount);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Channel",
+                "value": "WEBP"
+              },
+              {
+                "key": "AppId",
+                "value": "WEBP"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/admin/topup/requests",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "admin",
+                "topup",
+                "requests"
+              ]
+            },
+            "description": "List all top-up requests with status=PENDING, ordered by createdAt DESC.\n\n**Use Case**: Admin dashboard to review pending requests.\n\n**Response**: List<TopUpResponseDto>{id, userId, amount, status=PENDING, createdAt}\n\n**No query parameters** – returns all pending globally."
+          },
+          "response": []
+        },
+        {
+          "name": "POST Approve Top-Up Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 200) {",
+                  "    console.log('Approved request:', json.id, 'status:', json.status);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Channel",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppId",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/admin/topup/requests/5/approve",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "admin",
+                "topup",
+                "requests",
+                "5",
+                "approve"
+              ]
+            },
+            "description": "Approve a pending top-up request.\n\n**Flow**:\n1. Load TopUpRequest by ID (404 if not found)\n2. Validate status is PENDING (400 if already processed)\n3. Call WalletService.adminTopUp(userId, amount, \"TOPUP-\" + requestId)\n4. Update request status → APPROVED\n5. Persist changes @Transactional\n\n**Side Effects**:\n- Wallet balance credited\n- Transaction record created\n\n**Response**: TopUpResponseDto{id, userId, amount, status=APPROVED, createdAt}\n\n**Errors**:\n- 404: Request not found\n- 400: Already processed\n- 403: Non-ADMIN"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Reject Top-Up Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 200) {",
+                  "    console.log('Rejected request:', json.id, 'status:', json.status);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Channel",
+                "value": "WEBP"
+              },
+              {
+                "key": "AppId",
+                "value": "WEBP"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/admin/topup/requests/45/reject",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "admin",
+                "topup",
+                "requests",
+                "45",
+                "reject"
+              ]
+            },
+            "description": "Reject a pending top-up request.\n\n**Flow**:\n1. Load TopUpRequest by ID\n2. Validate status = PENDING\n3. Update status → REJECTED\n4. Save (no wallet changes)\n\n**Response**: TopUpResponseDto with status=REJECTED\n\n**Errors**:\n- 404: Not found\n- 400: Already processed\n- 403: Non-ADMIN"
+          },
+          "response": []
+        },
+        {
+          "name": "GET User Wallet (Admin View)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (pm.response.code === 200) {",
+                  "    console.log('User wallet:', json.username, 'balance:', json.balance);",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Channel",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppId",
+                "value": "BANKAPP"
+              },
+              {
+                "key": "AppVersion",
+                "value": "{{appVersion}}"
+              },
+              {
+                "key": "RequestId",
+                "value": "{{requestId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:9090/api/admin/wallet/{{targetUserId}}",
+              "host": [
+                "localhost"
+              ],
+              "port": "9090",
+              "path": [
+                "api",
+                "admin",
+                "wallet",
+                "{{targetUserId}}"
+              ]
+            },
+            "description": "Admin: View any user's wallet balance.\n\n**Path Parameter**: userId\n**Response**: WalletDto{id, userId, username, balance}\n\n**Errors**:\n- 404: Wallet not found\n- 403: Non-ADMIN"
+          },
+          "response": []
+        }
+      ],
+      "description": "Require JWT with ROLE_ADMIN.\n\nUse Channel BANKAPP or SWIFTY (GOLD tier preferred for high limits)."
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Auto-generate RequestId if not set",
+          "if (!pm.variables.get('requestId') || pm.variables.get('requestId') === '{{$guid}}') {",
+          "    pm.variables.set('requestId', pm.variables.replaceIn('{{$guid}}'));",
+          "}",
+          "",
+          "// Auto-generate timestamp-based variables",
+          "var ts = Date.now();",
+          "pm.variables.set('timestamp', ts);",
+          "",
+          "// Set dynamic username if still default",
+          "if (pm.variables.get('username').includes('{{timestamp}}')) {",
+          "    pm.variables.set('username', 'user_' + ts);",
+          "}",
+          "",
+          "// Set dynamic admin username if still default",
+          "if (pm.variables.get('adminUsername').includes('{{timestamp}}')) {",
+          "    pm.variables.set('adminUsername', 'admin_' + ts);",
+          "}",
+          "",
+          "// Set dynamic references",
+          "pm.variables.set('transferRef', 'INV-' + ts);",
+          "pm.variables.set('adminRef', 'ADMIN-' + ts);",
+          "",
+          "// Log for debugging",
+          "console.log('Request Headers:', pm.request.headers);",
+          "console.log('Using RequestId:', pm.variables.get('requestId'));"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9090"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "adminUserId",
+      "value": ""
+    },
+    {
+      "key": "username",
+      "value": "test_user_{{timestamp}}"
+    },
+    {
+      "key": "password",
+      "value": "SecurePass123!"
+    },
+    {
+      "key": "adminUsername",
+      "value": "admin_user_{{timestamp}}"
+    },
+    {
+      "key": "adminPassword",
+      "value": "SecurePass123!"
+    },
+    {
+      "key": "channel",
+      "value": "WEBP"
+    },
+    {
+      "key": "appId",
+      "value": "WEBP"
+    },
+    {
+      "key": "appVersion",
+      "value": "1.0.0"
+    },
+    {
+      "key": "requestId",
+      "value": "{{$guid}}"
+    },
+    {
+      "key": "transferRef",
+      "value": "INV-{{timestamp}}"
+    },
+    {
+      "key": "adminRef",
+      "value": "ADMIN-{{timestamp}}"
+    },
+    {
+      "key": "receiverId",
+      "value": "2"
+    },
+    {
+      "key": "amount",
+      "value": "1000"
+    },
+    {
+      "key": "topupAmount",
+      "value": "50000"
+    },
+    {
+      "key": "adminTopupAmount",
+      "value": "150000"
+    },
+    {
+      "key": "targetUserId",
+      "value": "2"
+    },
+    {
+      "key": "pendingRequestId",
+      "value": ""
+    }
+  ]
+}

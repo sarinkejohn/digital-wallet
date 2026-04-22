@@ -116,29 +116,26 @@ public class WalletService {
     }
 
     @Transactional
-    public TransactionDto adminTopUp(Long userId, Double amount, String reference) {
+    public TransactionDto adminTopUp(Long userId, Double amount, Long adminUserId) {
         validateTopUpAmount(amount);
 
-        if (transactionsRepository.findByReference(reference).isPresent() && reference != null) {
-            throw new DuplicateReferenceException("Transaction with this reference already exists");
-        }
-
+        String correlationId = "TX" + UUID.randomUUID().toString().substring(0, 13).toUpperCase();
+        
         Wallet wallet = walletRepository.findByUserId(userId)
                 .orElseThrow(() -> new UserNotFoundException("Wallet not found for user: " + userId));
-
-        String ref = reference != null ? reference : UUID.randomUUID().toString();
 
         wallet.setBalance(wallet.getBalance() + amount);
         walletRepository.save(wallet);
 
         Transactions transaction = new Transactions();
+        transaction.setSenderId(adminUserId);
         transaction.setReceiverId(userId);
         transaction.setAmount(amount);
         transaction.setType(TransactionType.TOP_UP);
-        transaction.setReference(ref);
+        transaction.setReference(correlationId);
         transactionsRepository.save(transaction);
 
-        logger.info("Admin top-up completed: {} to user {}", amount, userId);
+        logger.info("Admin top-up completed: {} by admin {} to user {}", amount, adminUserId, userId);
         return new TransactionDto(transaction.getId(), transaction.getSenderId(),
                 transaction.getReceiverId(), transaction.getAmount(), transaction.getType(),
                 transaction.getReference(), transaction.getCreatedAt());
@@ -160,7 +157,7 @@ public class WalletService {
     }
 
     @Transactional
-    public TopUpResponseDto approveTopUpRequest(Long requestId) {
+    public TopUpResponseDto approveTopUpRequest(Long requestId, Long adminUserId) {
         TopUpRequest request = topUpRequestRepository.findById(requestId)
                 .orElseThrow(() -> new UserNotFoundException("Top-up request not found"));
 
@@ -168,11 +165,11 @@ public class WalletService {
             throw new InvalidAmountException("Request is not in pending status");
         }
 
-        adminTopUp(request.getUserId(), request.getAmount(), "TOPUP-" + requestId);
+        adminTopUp(request.getUserId(), request.getAmount(), adminUserId);
         request.setStatus(RequestStatus.APPROVED);
         request = topUpRequestRepository.save(request);
 
-        logger.info("Top-up request approved: {}", requestId);
+        logger.info("Top-up request {} approved by admin {}", requestId, adminUserId);
         return new TopUpResponseDto(request.getId(), request.getUserId(),
                 request.getAmount(), request.getStatus(), request.getCreatedAt());
     }

@@ -1,6 +1,7 @@
 package dev.sarinkejohn.gateway_demo.config;
 
 import dev.sarinkejohn.gateway.config.ChannelProperties;
+import dev.sarinkejohn.gateway.filter.ChannelValidationFilter;
 import dev.sarinkejohn.gateway.filter.JsonSchemaValidationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,5 +11,10 @@ public class FilterConfig {
     @Bean
     public JsonSchemaValidationFilter jsonSchemaValidationFilter(ChannelProperties channelProperties) {
         return new JsonSchemaValidationFilter(channelProperties);
+    }
+
+    @Bean
+    public ChannelValidationFilter channelValidationFilter() {
+        return new ChannelValidationFilter();
     }
 }

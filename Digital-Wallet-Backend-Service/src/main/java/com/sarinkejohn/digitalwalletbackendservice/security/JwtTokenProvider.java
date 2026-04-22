@@ -23,7 +23,7 @@ public class JwtTokenProvider {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(String username, String role, Long userId) {
+    public String generateToken(String username, String role, Long userId, String channel) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 
@@ -31,10 +31,24 @@ public class JwtTokenProvider {
                 .subject(username)
                 .claim("role", role)
                 .claim("userId", userId)
+                .claim("channel", channel)
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(getSigningKey())
                 .compact();
+    }
+
+    public String generateToken(String username, String role, Long userId) {
+        return generateToken(username, role, userId, "WEBP");
+    }
+
+    public String getChannelFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+        return claims.get("channel", String.class);
     }
 
     public String getUsernameFromToken(String token) {

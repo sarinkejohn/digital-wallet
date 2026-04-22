@@ -1,9 +1,11 @@
 package com.sarinkejohn.digitalwalletbackendservice.controller;
 
 import com.sarinkejohn.digitalwalletbackendservice.dto.*;
+import com.sarinkejohn.digitalwalletbackendservice.security.UserPrincipal;
 import com.sarinkejohn.digitalwalletbackendservice.service.WalletService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +21,13 @@ public class AdminController {
     }
 
     @PostMapping("/topup")
-    public ResponseEntity<TransactionDto> adminTopUp(@Valid @RequestBody AdminTopUpRequest request) {
+    public ResponseEntity<TransactionDto> adminTopUp(
+            @Valid @RequestBody AdminTopUpRequest request,
+            @AuthenticationPrincipal UserPrincipal admin) {
         return ResponseEntity.ok(walletService.adminTopUp(
                 request.getUserId(), 
                 request.getAmount(),
-                request.getReference()));
+                admin.getUserId()));
     }
 
     @GetMapping("/topup/requests")
@@ -32,8 +36,10 @@ public class AdminController {
     }
 
     @PostMapping("/topup/requests/{requestId}/approve")
-    public ResponseEntity<TopUpResponseDto> approveTopUpRequest(@PathVariable Long requestId) {
-        return ResponseEntity.ok(walletService.approveTopUpRequest(requestId));
+    public ResponseEntity<TopUpResponseDto> approveTopUpRequest(
+            @PathVariable Long requestId,
+            @AuthenticationPrincipal UserPrincipal admin) {
+        return ResponseEntity.ok(walletService.approveTopUpRequest(requestId, admin.getUserId()));
     }
 
     @PostMapping("/topup/requests/{requestId}/reject")

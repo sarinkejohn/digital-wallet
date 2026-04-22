@@ -20,14 +20,28 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthResponse> register(
+            @Valid @RequestBody RegisterRequest request,
+            @RequestHeader(value = "Channel", required = false, defaultValue = "WEBP") String channel) {
+        request.setChannel(channel);
         return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<AuthResponse> login(
+            @RequestBody Map<String, String> credentials,
+            @RequestHeader(value = "Channel", required = false, defaultValue = "WEBP") String channel) {
         return ResponseEntity.ok(authService.login(
                 credentials.get("username"), 
-                credentials.get("password")));
+                credentials.get("password"),
+                channel));
+    }
+
+    @PostMapping("/admin/register")
+    public ResponseEntity<AuthResponse> registerAdmin(
+            @Valid @RequestBody RegisterRequest request,
+            @RequestHeader(value = "Channel", required = false, defaultValue = "WEBP") String channel) {
+        request.setChannel(channel);
+        return ResponseEntity.ok(authService.registerAdmin(request));
     }
 }
