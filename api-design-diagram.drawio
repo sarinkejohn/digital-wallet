@@ -1,224 +1,276 @@
 <mxfile host="65bd71144e">
     <diagram id="-c6gyw2GeMNWFdLiA0v5" name="Digital Wallet API - Complete Flow">
-        <mxGraphModel dx="540" dy="474" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1149" dy="474" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Digital Wallet API - Complete Architecture&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="2" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Digital Wallet API - Complete Architecture&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="500" y="20" width="400" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="&lt;b&gt;CLIENTS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="3" value="&lt;b&gt;CLIENTS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="50" y="80" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="4" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#0984e3;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="120" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#e17055;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="5" value="&lt;b&gt;Admin&lt;/b&gt;&lt;br&gt;(Web / Mobile)" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#e17055;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="60" y="220" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="&lt;b&gt;API GATEWAY&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="6" value="&lt;b&gt;API GATEWAY&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="80" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;JWT Check · Rate Limit" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="7" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br&gt;:9090&lt;br&gt;JWT Check · Rate Limit" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#6c5ce7;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="120" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="&lt;b&gt;CACHE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="8" value="&lt;b&gt;CACHE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="270" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379&lt;br&gt;Token Blacklist" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
-                    <mxGeometry x="260" y="310" width="100" height="60" as="geometry"/>
+                <mxCell id="9" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379&lt;br&gt;Token Blacklist" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="350" width="100" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="&lt;b&gt;SECURITY&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="10" value="&lt;b&gt;SECURITY&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="460" y="80" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;Authentication" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="11" value="&lt;b&gt;JwtAuthFilter&lt;/b&gt;&lt;br&gt;Authentication" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="460" y="120" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="&lt;b&gt;CONTROLLERS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="12" value="&lt;b&gt;CONTROLLERS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="660" y="80" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="&lt;b&gt;AuthController&lt;/b&gt;&lt;br&gt;register() · login()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="13" value="&lt;b&gt;AuthController&lt;/b&gt;&lt;br&gt;register() · login()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="640" y="120" width="140" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;balance() · transfer() · topup() · transactions()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="14" value="&lt;b&gt;WalletController&lt;/b&gt;&lt;br&gt;balance() · transfer() · topup() · transactions()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="640" y="190" width="180" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;topup() · approve() · reject() · getUserWallet()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="15" value="&lt;b&gt;AdminController&lt;/b&gt;&lt;br&gt;topup() · approve() · reject() · getUserWallet()" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00b894;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="640" y="260" width="190" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="&lt;b&gt;SERVICES&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="16" value="&lt;b&gt;SERVICES&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="900" y="80" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="&lt;b&gt;AuthService&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="17" value="&lt;b&gt;AuthService&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="880" y="120" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="&lt;b&gt;WalletService&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="18" value="&lt;b&gt;WalletService&lt;/b&gt;" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#55efc4;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="880" y="190" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="&lt;b&gt;REPOSITORIES&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="19" value="&lt;b&gt;REPOSITORIES&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="1080" y="80" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="UserRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="20" value="UserRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="1070" y="120" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="WalletRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="21" value="WalletRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="1070" y="170" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="TransactionsRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="22" value="TransactionsRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="1070" y="220" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="TopUpRequestRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="23" value="TopUpRequestRepository" style="shape=mxgraph.basic.rectangle;whiteSpace=wrap;html=1;fillColor=#00cec9;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="1070" y="270" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="&lt;b&gt;DATABASE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
-                    <mxGeometry x="1280" y="80" width="110" height="30" as="geometry"/>
+                <mxCell id="24" value="&lt;b&gt;DATABASE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="1520" y="100" width="110" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
-                    <mxGeometry x="1280" y="140" width="120" height="70" as="geometry"/>
+                <mxCell id="25" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="1300" y="140" width="120" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="HTTPS" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="4" target="7">
+                <mxCell id="26" value="HTTPS" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="4" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="HTTPS" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="5" target="7">
+                <mxCell id="27" value="HTTPS" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="5" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="Token Validation" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="7" target="9">
+                <mxCell id="28" value="Token Validation" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="7" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="forward" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="7" target="11">
+                <mxCell id="29" value="forward" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="7" target="11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="11" target="13">
+                <mxCell id="30" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="11" target="13" edge="1">
+                    <mxGeometry y="-10" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="620" y="150"/>
+                            <mxPoint x="620" y="150"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="11" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="520" y="215"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="11" target="15" edge="1">
+                    <mxGeometry x="-1" y="-90" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="520" y="285"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="82" value="authenticate" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];movable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" connectable="0" parent="32">
+                    <mxGeometry x="0.4468" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="13" target="17" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="11" target="14">
+                <mxCell id="34" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="14" target="18" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="authenticate" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="11" target="15">
+                <mxCell id="35" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="15" target="18" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="13" target="17">
+                <mxCell id="36" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="17" target="20" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="14" target="18">
+                <mxCell id="37" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="18" target="21" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="15" target="18">
+                <mxCell id="38" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="18" target="22" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="17" target="20">
+                <mxCell id="39" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="18" target="23" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="18" target="21">
+                <mxCell id="40" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="20" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="18" target="22">
+                <mxCell id="41" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="21" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="18" target="23">
+                <mxCell id="42" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="22" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="20" target="25">
+                <mxCell id="43" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" source="23" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="21" target="25">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="42" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="22" target="25">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="43" value="SQL" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1" source="23" target="25">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="44" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;API Endpoints Flow&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="44" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;API Endpoints Flow&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="650" y="440" width="200" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="&lt;b&gt;AUTHENTICATION&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="45" value="&lt;b&gt;AUTHENTICATION&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="70" y="480" width="200" height="25" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="POST /api/auth/register → User → Gateway → AuthController → AuthService → UserRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="46" value="POST /api/auth/register → User → Gateway → AuthController → AuthService → UserRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="510" width="700" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="POST /api/auth/login → User → Gateway → AuthController → AuthService → UserRepository → PostgreSQL (returns JWT)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="47" value="POST /api/auth/login → User → Gateway → AuthController → AuthService → UserRepository → PostgreSQL (returns JWT)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="535" width="700" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="&lt;b&gt;&amp;nbsp;WALLET (User)&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="48" value="&lt;b&gt;&amp;nbsp;WALLET (User)&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="70" y="570" width="200" height="25" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" value="GET /api/wallet/balance → User → Gateway → JwtAuthFilter → WalletController → WalletService → WalletRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="49" value="GET /api/wallet/balance → User → Gateway → JwtAuthFilter → WalletController → WalletService → WalletRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="600" width="800" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="POST /api/wallet/transfer → User → Gateway → JwtAuthFilter → WalletController → WalletService → WalletRepository + TransactionsRepository → PostgreSQL (with transaction)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="50" value="POST /api/wallet/transfer → User → Gateway → JwtAuthFilter → WalletController → WalletService → WalletRepository + TransactionsRepository → PostgreSQL (with transaction)" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="625" width="900" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" value="POST /api/wallet/topup/request → User → Gateway → JwtAuthFilter → WalletController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="51" value="POST /api/wallet/topup/request → User → Gateway → JwtAuthFilter → WalletController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="650" width="800" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="GET /api/wallet/transactions → User → Gateway → JwtAuthFilter → WalletController → WalletService → TransactionsRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="52" value="GET /api/wallet/transactions → User → Gateway → JwtAuthFilter → WalletController → WalletService → TransactionsRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="675" width="800" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="&lt;b&gt;ADMIN&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="53" value="&lt;b&gt;ADMIN&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="70" y="750" width="200" height="25" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="POST /api/admin/topup → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → WalletRepository + TransactionsRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="54" value="POST /api/admin/topup → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → WalletRepository + TransactionsRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="780" width="850" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="GET /api/admin/topup/requests → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="55" value="GET /api/admin/topup/requests → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="805" width="850" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="POST /api/admin/topup/requests/{id}/approve → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRep + WalletRep + TransactionsRep → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="56" value="POST /api/admin/topup/requests/{id}/approve → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRep + WalletRep + TransactionsRep → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="830" width="900" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="POST /api/admin/topup/requests/{id}/reject → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="57" value="POST /api/admin/topup/requests/{id}/reject → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → TopUpRequestRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="80" y="855" width="850" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="GET /api/admin/wallet/{userId} → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → WalletRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="58" value="GET /api/admin/wallet/{userId} → Admin → Gateway → JwtAuthFilter(ADMIN) → AdminController → WalletService → WalletRepository → PostgreSQL" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontFamily=Courier New;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="860" y="610" width="850" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="&lt;b&gt;Color Legend:&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="59" value="&lt;b&gt;Color Legend:&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="70" y="930" width="100" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0984e3;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="60" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0984e3;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="180" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="Client" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="61" value="Client" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="200" y="930" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c5ce7;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="62" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c5ce7;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="260" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="Gateway" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="63" value="Gateway" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="280" y="930" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdcb6e;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="64" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdcb6e;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="350" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="65" value="Security/Cache" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="65" value="Security/Cache" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="370" y="930" width="100" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00b894;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="66" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00b894;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="480" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="67" value="Controller" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="67" value="Controller" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="500" y="930" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="68" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#55efc4;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="68" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#55efc4;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="570" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="Service" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="69" value="Service" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="590" y="930" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00cec9;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="70" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00cec9;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="650" y="932" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" value="Repository" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="71" value="Repository" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="670" y="930" width="70" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="72" value="" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="72" value="" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="750" y="930" width="15" height="15" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                <mxCell id="73" value="Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
                     <mxGeometry x="770" y="930" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="&lt;b&gt;CACHE&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=14;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                    <mxGeometry x="1320" y="90" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;:6379&lt;br&gt;cache data" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#fdcb6e;strokeColor=#ffffff;fontColor=#2d3436;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                    <mxGeometry x="1310" y="145" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="cache MISS" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=1.5;dashed=1;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;exitX=0.258;exitY=1.029;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.617;entryY=1.057;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="79">
+                    <mxGeometry x="-0.0746" y="-2" relative="1" as="geometry">
+                        <mxPoint x="1370" y="209.99999999999997" as="sourcePoint"/>
+                        <mxPoint x="1379.04" y="347.97" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1370" y="240"/>
+                            <mxPoint x="1594" y="240"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="79" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;digital_wallet_db" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#d63031;strokeColor=#ffffff;fontColor=#ffffff;rounded=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+                    <mxGeometry x="1520" y="140" width="120" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="wire/call" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1420" y="177.5" as="sourcePoint"/>
+                        <mxPoint x="1520" y="177.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1430" y="177.5"/>
+                            <mxPoint x="1430" y="172.5"/>
+                            <mxPoint x="1490" y="172.5"/>
+                            <mxPoint x="1490" y="177.5"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
