@@ -18,18 +18,52 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "// Capture token and user details for later use",
-                  "var json = pm.response.json();",
-                  "if (pm.response.code === 201) {",
-                  "    pm.environment.set(\"authToken\", json.token);",
-                  "    pm.environment.set(\"userId\", json.userId);",
-                  "    pm.environment.set(\"username\", json.username);",
-                  "    console.log('Registered user:', json.username, 'ID:', json.userId);",
-                  "} else {",
-                  "    console.log('Registration failed:', json);",
-                  "}"
+                  "// Test 1: Status is 200 (or 201)",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Test 2: Token exists in response",
+                  "pm.test(\"Token is present in response body\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.exist;",
+                  "});",
+                  "",
+                  "// Test 3: Token is a non-empty string",
+                  "pm.test(\"Token is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+                  "});",
+                  "",
+                  "// Test 4: Save token based on role",
+                  "pm.test(\"Save token to environment variable based on role\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    const role = responseData.role;",
+                  "    const token = responseData.token;",
+                  "    ",
+                  "    if (role === \"ADMIN\") {",
+                  "        pm.globals.set(\"token-admin\", token);",
+                  "        console.log(\"✅ Admin token saved as 'token-admin'\");",
+                  "    } else if (role === \"USER\") {",
+                  "        pm.globals.set(\"token-user\", token);",
+                  "        console.log(\"✅ User token saved as 'token-user'\");",
+                  "    } else {",
+                  "        // Fallback for any other role",
+                  "        pm.environment.set(\"authToken\", token);",
+                  "        console.log(\"⚠️ Unknown role, token saved as 'authToken'\");",
+                  "    }",
+                  "    ",
+                  "    // Also store user info for reference",
+                  "    pm.environment.set(\"userId\", responseData.userId);",
+                  "    pm.environment.set(\"role\", role);",
+                  "    pm.environment.set(\"username\", responseData.username);",
+                  "    ",
+                  "    pm.expect(pm.globals.get(\"token-admin\") || pm.globals.get(\"token-user\") || pm.environment.get(\"authToken\")).to.exist;",
+                  "});"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -59,7 +93,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+              "raw": "{\n  \"username\": \"user001\",\n  \"password\": \"SecurePass123!\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -89,13 +123,59 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "var json = pm.response.json();",
-                  "if (pm.response.code === 201) {",
-                  "    pm.environment.set(\"authToken\", json.token);",
-                  "    pm.environment.set(\"userId\", json.userId);",
-                  "    pm.environment.set(\"role\", json.role);",
-                  "    console.log('Logged in as:', json.username);",
-                  "}"
+                  "// Test 1: Status is 200 (or 201)",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Test 2: Token exists in response",
+                  "pm.test(\"Token is present in response body\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.exist;",
+                  "});",
+                  "",
+                  "// Test 3: Token is a non-empty string",
+                  "pm.test(\"Token is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+                  "});",
+                  "",
+                  "// Test 4: Save token based on role",
+                  "pm.test(\"Save token to environment variable based on role\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    const role = responseData.role;",
+                  "    const token = responseData.token;",
+                  "    ",
+                  "    if (role === \"ADMIN\") {",
+                  "        pm.globals.set(\"token-admin\", token);",
+                  "        console.log(\"✅ Admin token saved as 'token-admin'\");",
+                  "    } else if (role === \"USER\") {",
+                  "        pm.globals.set(\"token-user\", token);",
+                  "        console.log(\"✅ User token saved as 'token-user'\");",
+                  "    } else {",
+                  "        // Fallback for any other role",
+                  "        pm.environment.set(\"authToken\", token);",
+                  "        console.log(\"⚠️ Unknown role, token saved as 'authToken'\");",
+                  "    }",
+                  "    ",
+                  "    // Also store user info for reference",
+                  "    pm.environment.set(\"userId\", responseData.userId);",
+                  "    pm.environment.set(\"role\", role);",
+                  "    pm.environment.set(\"username\", responseData.username);",
+                  "    ",
+                  "    pm.expect(pm.globals.get(\"token-admin\") || pm.globals.get(\"token-user\") || pm.environment.get(\"authToken\")).to.exist;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -104,6 +184,16 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -159,14 +249,52 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "var json = pm.response.json();",
-                  "if (pm.response.code === 201) {",
-                  "    pm.environment.set(\"adminToken\", json.token);",
-                  "    pm.environment.set(\"adminUserId\", json.userId);",
-                  "    console.log('Registered admin:', json.username, 'ID:', json.userId);",
-                  "}"
+                  "// Test 1: Status is 200 (or 201)",
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Test 2: Token exists in response",
+                  "pm.test(\"Token is present in response body\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.exist;",
+                  "});",
+                  "",
+                  "// Test 3: Token is a non-empty string",
+                  "pm.test(\"Token is a non-empty string\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+                  "});",
+                  "",
+                  "// Test 4: Save token based on role",
+                  "pm.test(\"Save token to environment variable based on role\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    const role = responseData.role;",
+                  "    const token = responseData.token;",
+                  "    ",
+                  "    if (role === \"ADMIN\") {",
+                  "        pm.globals.set(\"token-admin\", token);",
+                  "        console.log(\"✅ Admin token saved as 'token-admin'\");",
+                  "    } else if (role === \"USER\") {",
+                  "        pm.globals.set(\"token-user\", token);",
+                  "        console.log(\"✅ User token saved as 'token-user'\");",
+                  "    } else {",
+                  "        // Fallback for any other role",
+                  "        pm.environment.set(\"authToken\", token);",
+                  "        console.log(\"⚠️ Unknown role, token saved as 'authToken'\");",
+                  "    }",
+                  "    ",
+                  "    // Also store user info for reference",
+                  "    pm.environment.set(\"userId\", responseData.userId);",
+                  "    pm.environment.set(\"role\", role);",
+                  "    pm.environment.set(\"username\", responseData.username);",
+                  "    ",
+                  "    pm.expect(pm.globals.get(\"token-admin\") || pm.globals.get(\"token-user\") || pm.environment.get(\"authToken\")).to.exist;",
+                  "});"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -247,6 +375,16 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token-user}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -456,6 +594,16 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token-admin}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -518,10 +666,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "var json = pm.response.json();",
-                  "if (pm.response.code === 201) {",
-                  "    console.log('Admin top-up completed:', json.amount, 'to user', json.receiverId);",
-                  "}"
+                  ""
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -535,7 +680,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "value": "{{token-admin}}",
                   "type": "string"
                 }
               ]
@@ -552,11 +697,11 @@
               },
               {
                 "key": "Channel",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppId",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppVersion",
@@ -569,7 +714,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"userId\": {{targetUserId}},\n  \"amount\": 5000,\n  \"reference\": \"{{adminRef}}\"\n}",
+              "raw": "{\n  \"userId\": {{targetUserId}},\n  \"amount\": 500\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -620,7 +765,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "value": "{{token-admin}}",
                   "type": "string"
                 }
               ]
@@ -694,7 +839,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "value": "{{token-admin}}",
                   "type": "string"
                 }
               ]
@@ -707,11 +852,11 @@
               },
               {
                 "key": "Channel",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppId",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppVersion",
@@ -728,7 +873,7 @@
               }
             ],
             "url": {
-              "raw": "localhost:9090/api/admin/topup/requests/5/approve",
+              "raw": "localhost:9090/api/admin/topup/requests/4/approve",
               "host": [
                 "localhost"
               ],
@@ -738,7 +883,7 @@
                 "admin",
                 "topup",
                 "requests",
-                "5",
+                "4",
                 "approve"
               ]
             },
@@ -829,10 +974,7 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "var json = pm.response.json();",
-                  "if (pm.response.code === 200) {",
-                  "    console.log('User wallet:', json.username, 'balance:', json.balance);",
-                  "}"
+                  ""
                 ],
                 "type": "text/javascript",
                 "packages": {},
@@ -846,7 +988,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbl8xNzc2ODY2MzI0NjI4Iiwicm9sZSI6IkFETUlOIiwidXNlcklkIjoxMSwiaWF0IjoxNzc2ODY2Mzk5LCJleHAiOjE3NzY5NTI3OTl9.W3xAWSNChr4tv0eBZq1NvQbdAfxo4CjvnIX6cJ8MSjo",
+                  "value": "{{token-admin}}",
                   "type": "string"
                 }
               ]
@@ -859,11 +1001,11 @@
               },
               {
                 "key": "Channel",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppId",
-                "value": "BANKAPP"
+                "value": "WEBP"
               },
               {
                 "key": "AppVersion",
@@ -904,6 +1046,8 @@
     {
       "listen": "prerequest",
       "script": {
+        "type": "text/javascript",
+        "requests": {},
         "exec": [
           "// Auto-generate RequestId if not set",
           "if (!pm.variables.get('requestId') || pm.variables.get('requestId') === '{{$guid}}') {",
@@ -931,8 +1075,18 @@
           "// Log for debugging",
           "console.log('Request Headers:', pm.request.headers);",
           "console.log('Using RequestId:', pm.variables.get('requestId'));"
-        ],
-        "type": "text/javascript"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
       }
     }
   ],
@@ -1019,6 +1173,10 @@
     },
     {
       "key": "pendingRequestId",
+      "value": ""
+    },
+    {
+      "key": "userToken",
       "value": ""
     }
   ]

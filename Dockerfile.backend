@@ -1,0 +1,39 @@
+# ===============================================
+# Digital Wallet Backend Service Dockerfile
+# ===============================================
+
+FROM maven:4.0.1-eclipse-temurin-25 AS builder
+
+WORKDIR /build
+
+# Copy backend project
+COPY Digital-Wallet-Backend-Service/pom.xml .
+COPY Digital-Wallet-Backend-Service/src ./src
+
+# Build JAR
+RUN mvn clean package -DskipTests -Dmaven.test.skip=true
+
+# Runtime image
+FROM eclipse-temurin:25-jre-alpine
+
+WORKDIR /app
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Copy built JAR
+COPY --from=builder /build/target/*.jar /app/backend.jar
+
+# Expose port
+EXPOSE 8080
+
+# Environment variables
+ENV \
+    SPRING_PROFILES_ACTIVE=dev \
+    JWT_SECRET="mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm" \
+    BCRYPT_ROUNDS=10 \
+    AUTH_MAX_LOGIN_ATTEMPTS=5 \
+    AUTH_LOCKOUT_DURATION=5
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["java", "-jar", "/app/backend.jar"]

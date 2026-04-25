@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: digital-wallet-db
+    environment:
+      POSTGRES_DB: digital_wallet_db
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5438:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wallet-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: digital-wallet-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wallet-network
+
+  # Digital Wallet Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: digital-wallet-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/digital_wallet_db
+      SPRING_DATASOURCE_USERNAME: test
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm}
+      BCRYPT_ROUNDS: ${BCRYPT_ROUNDS:-10}
+      AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS:-5}
+      AUTH_LOCKOUT_DURATION: ${AUTH_LOCKOUT_DURATION:-5}
+      WALLET_TRANSFER_MIN_AMOUNT: ${WALLET_TRANSFER_MIN_AMOUNT:-1.0}
+      WALLET_TRANSFER_MAX_AMOUNT: ${WALLET_TRANSFER_MAX_AMOUNT:-100000.0}
+      WALLET_TOPUP_MAX_AMOUNT: ${WALLET_TOPUP_MAX_AMOUNT:-1000000.0}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - wallet-network
+    restart: unless-stopped
+
+  # API Gateway
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    container_name: digital-wallet-gateway
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3000}
+      CHANNEL_ARRAY_LIST: ${CHANNEL_ARRAY_LIST:-WEBP,SWIFTY,BANKAPP,MOBILEMONEY,SAMONEY}
+      CHANNEL_TIER_MAP_WEBP: ${CHANNEL_TIER_MAP_WEBP:-SILVER}
+      CHANNEL_TIER_MAP_SWIFTY: ${CHANNEL_TIER_MAP_SWIFTY:-GOLD}
+      CHANNEL_TIER_MAP_BANKAPP: ${CHANNEL_TIER_MAP_BANKAPP:-GOLD}
+      CHANNEL_TIER_MAP_MOBILEMONEY: ${CHANNEL_TIER_MAP_MOBILEMONEY:-BRONZE}
+      CHANNEL_TIER_MAP_SAMONEY: ${CHANNEL_TIER_MAP_SAMONEY:-BRONZE}
+      APP_RATE_LIMIT_PACKAGE: ${APP_RATE_LIMIT_PACKAGE:-SILVER}
+    ports:
+      - "9090:9090"
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - wallet-network
+    restart: unless-stopped
+
+  # Jaeger (Optional - Distributed Tracing)
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: digital-wallet-jaeger
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP
+    networks:
+      - wallet-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  wallet-network:
+    driver: bridge

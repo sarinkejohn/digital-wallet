@@ -1,0 +1,114 @@
+# ===============================================
+# Digital Wallet System - Single Container
+# Backend + Gateway + PostgreSQL + Redis
+# ===============================================
+
+FROM alpine:3.20 AS base
+
+# Install required packages
+RUN apk add --no-cache \
+    openjdk25-jre \
+    postgresql16 \
+    postgresql16-client \
+    redis \
+    dumb-init \
+    curl \
+    procps
+
+# Create directories
+RUN mkdir -p /etc/postgresql/16/main /var/lib/postgresql/16/main /var/log/postgresql /app
+
+# Configure PostgreSQL
+COPY docker/postgresql.conf /etc/postgresql/16/main/
+COPY docker/pg_hba.conf /etc/postgresql/16/main/
+
+# Create postgres user
+RUN addgroup -g 70 -S postgres && \
+    adduser -u 70 -S -G postgres postgres
+
+# Set ownership
+RUN chown -R postgres:postgres /etc/postgresql /var/lib/postgresql /var/log/postgresql
+
+# Switch to postgres user for init
+USER postgres
+
+# Initialize PostgreSQL database
+RUN initdb -D /var/lib/postgresql/16/main
+
+# Back to root for final setup
+USER root
+
+# ===============================================
+# Build Stage - Backend
+# ===============================================
+FROM maven:4.0.1-eclipse-temurin-25 AS backend-builder
+
+WORKDIR /build/backend
+COPY Digital-Wallet-Backend-Service/pom.xml .
+COPY Digital-Wallet-Backend-Service/src ./src
+RUN mvn clean package -DskipTests -Dmaven.test.skip=true
+
+# ===============================================
+# Build Stage - Gateway
+# ===============================================
+FROM maven:4.0.1-eclipse-temurin-25 AS gateway-builder
+
+WORKDIR /build/gateway
+COPY backend-gateway/pom.xml .
+COPY backend-gateway/src ./src
+RUN mvn clean package -DskipTests -Dmaven.test.skip=true
+
+# ===============================================
+# Final Stage - Combine Everything
+# ===============================================
+FROM base AS final
+
+# Copy Java applications
+COPY --from=backend-builder /build/backend/target/*.jar /app/backend.jar
+COPY --from=gateway-builder /build/gateway/target/*.jar /app/gateway.jar
+
+# Copy startup script
+COPY docker/entrypoint-all-in-one.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint-all-in-one.sh
+
+WORKDIR /app
+
+# Expose all ports
+#  5432 - PostgreSQL
+#  6379 - Redis
+#  8080 - Backend API
+#  9090 - API Gateway
+EXPOSE 5432 6379 8080 9090
+
+# Environment variables
+ENV \
+    # PostgreSQL
+    PGDATA=/var/lib/postgresql/16/main \
+    POSTGRES_DB=digital_wallet_db \
+    POSTGRES_USER=test \
+    POSTGRES_PASSWORD=password \
+    \
+    # Backend
+    SPRING_PROFILES_ACTIVE=dev \
+    SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/digital_wallet_db \
+    SPRING_DATASOURCE_USERNAME=test \
+    SPRING_DATASOURCE_PASSWORD=password \
+    SPRING_DATA_REDIS_HOST=localhost \
+    SPRING_DATA_REDIS_PORT=6379 \
+    JWT_SECRET="mySecretKey" \
+    BCRYPT_ROUNDS=10 \
+    AUTH_MAX_LOGIN_ATTEMPTS=5 \
+    AUTH_LOCKOUT_DURATION=5 \
+    \
+    # Gateway
+    ALLOWED_ORIGINS="http://localhost:5173,http://localhost:3000" \
+    CHANNEL_ARRAY_LIST="WEBP,SWIFTY,BANKAPP,MOBILEMONEY,SAMONEY" \
+    CHANNEL_TIER_MAP_WEBP=SILVER \
+    CHANNEL_TIER_MAP_SWIFTY=GOLD \
+    CHANNEL_TIER_MAP_BANKAPP=GOLD \
+    CHANNEL_TIER_MAP_MOBILEMONEY=BRONZE \
+    CHANNEL_TIER_MAP_SAMONEY=BRONZE \
+    APP_RATE_LIMIT_PACKAGE=SILVER
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["entrypoint-all-in-one.sh"]

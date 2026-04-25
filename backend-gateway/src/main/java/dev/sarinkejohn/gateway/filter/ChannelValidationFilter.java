@@ -34,6 +34,12 @@ public class ChannelValidationFilter extends AbstractGatewayFilterFactory<Channe
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 
+            // Skip authentication for public endpoints (auth routes)
+            String path = request.getPath().value();
+            if (path.startsWith("/api/auth/")) {
+                return chain.filter(exchange);
+            }
+
             String requestChannel = request.getHeaders().getFirst("Channel");
             String authHeader = request.getHeaders().getFirst("Authorization");
 

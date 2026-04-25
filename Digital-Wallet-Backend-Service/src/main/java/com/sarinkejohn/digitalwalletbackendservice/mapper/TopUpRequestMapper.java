@@ -5,7 +5,7 @@ import com.sarinkejohn.digitalwalletbackendservice.dto.TopUpResponseDto;
 import com.sarinkejohn.digitalwalletbackendservice.entity.TopUpRequest;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface TopUpRequestMapper {
 
     TopUpRequest toEntity(TopUpRequestDto dto);

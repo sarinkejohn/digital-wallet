@@ -193,13 +193,12 @@ public class WalletServiceImpl implements WalletService {
         return topUpRequestMapper.toDto(request);
     }
 
-    public List<TopUpResponseDto> getPendingTopUpRequests() {
-        return topUpRequestRepository.findByStatusOrderByCreatedAtDesc(RequestStatus.PENDING)
-                .stream()
-                .map(r -> new TopUpResponseDto(r.getId(), r.getUserId(),
-                        r.getAmount(), r.getStatus(), r.getCreatedAt()))
-                .collect(Collectors.toList());
-    }
+   public List<TopUpResponseDto> getPendingTopUpRequests() {
+    return topUpRequestRepository.findByStatusOrderByCreatedAtDesc(RequestStatus.PENDING)
+            .stream()
+            .map(topUpRequestMapper::toDto)   
+            .collect(Collectors.toList());
+}
 
     public List<TransactionDto> getUserTransactions(Long userId) {
         return transactionsRepository.findBySenderIdOrReceiverIdOrderByCreatedAtDesc(userId, userId)

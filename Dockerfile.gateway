@@ -1,0 +1,44 @@
+# ===============================================
+# API Gateway Dockerfile
+# ===============================================
+
+FROM maven:4.0.1-eclipse-temurin-25 AS builder
+
+WORKDIR /build
+
+# Copy gateway project
+COPY backend-gateway/pom.xml .
+COPY backend-gateway/src ./src
+
+# Build JAR
+RUN mvn clean package -DskipTests -Dmaven.test.skip=true
+
+# Runtime image
+FROM eclipse-temurin:25-jre-alpine
+
+WORKDIR /app
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Copy built JAR
+COPY --from=builder /build/target/*.jar /app/gateway.jar
+
+# Expose port
+EXPOSE 9090
+
+# Environment variables
+ENV \
+    SPRING_PROFILES_ACTIVE=dev \
+    JWT_SECRET="mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm" \
+    ALLOWED_ORIGINS="http://localhost:5173,http://localhost:3000" \
+    CHANNEL_ARRAY_LIST="WEBP,SWIFTY,BANKAPP,MOBILEMONEY,SAMONEY" \
+    CHANNEL_TIER_MAP_WEBP=SILVER \
+    CHANNEL_TIER_MAP_SWIFTY=GOLD \
+    CHANNEL_TIER_MAP_BANKAPP=GOLD \
+    CHANNEL_TIER_MAP_MOBILEMONEY=BRONZE \
+    CHANNEL_TIER_MAP_SAMONEY=BRONZE \
+    APP_RATE_LIMIT_PACKAGE=SILVER
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["java", "-jar", "/app/gateway.jar"]
