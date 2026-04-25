@@ -8,8 +8,9 @@ import com.sarinkejohn.digitalwalletbackendservice.entity.Wallet;
 import com.sarinkejohn.digitalwalletbackendservice.enums.RequestStatus;
 import com.sarinkejohn.digitalwalletbackendservice.enums.TransactionType;
 import com.sarinkejohn.digitalwalletbackendservice.exception.*;
-import com.sarinkejohn.digitalwalletbackendservice.mapper.TransactionMapper;
+import com.sarinkejohn.digitalwalletbackendservice.mapper.TopUpRequestMapper;
 import com.sarinkejohn.digitalwalletbackendservice.mapper.TransactionsMapper;
+import com.sarinkejohn.digitalwalletbackendservice.mapper.WalletMapper;
 import com.sarinkejohn.digitalwalletbackendservice.repository.TransactionsRepository;
 import com.sarinkejohn.digitalwalletbackendservice.repository.TopUpRequestRepository;
 import com.sarinkejohn.digitalwalletbackendservice.repository.UserRepository;
@@ -35,6 +36,8 @@ public class WalletServiceImpl implements WalletService {
     private final TransactionsRepository transactionsRepository;
     private final TopUpRequestRepository topUpRequestRepository;
     private final TransactionsMapper transactionsMapper;
+    private final WalletMapper walletMapper;
+    private final TopUpRequestMapper topUpRequestMapper;
 
     @Value("${wallet.transfer.min-amount:1.0}")
     private double minTransferAmount;
@@ -46,25 +49,25 @@ public class WalletServiceImpl implements WalletService {
     private double maxTopUpAmount;
     public WalletServiceImpl(UserRepository userRepository, WalletRepository walletRepository,
                      TransactionsRepository transactionsRepository, TopUpRequestRepository topUpRequestRepository,
-                     TransactionsMapper transactionsMapper) {
+                     TransactionsMapper transactionsMapper,
+                     WalletMapper walletMapper,
+                     TopUpRequestMapper topUpRequestMapper) {
         this.userRepository = userRepository;
         this.walletRepository = walletRepository;
         this.transactionsRepository = transactionsRepository;
         this.topUpRequestRepository = topUpRequestRepository;
         this.transactionsMapper = transactionsMapper;
+        this.walletMapper = walletMapper;
+        this.topUpRequestMapper = topUpRequestMapper;
     }
 
     
 
     @Transactional
-    public Wallet createUserAndWallet(String username, String password, String role) {
-        if (userRepository.existsByUsername(username)) {
+    public Wallet createUserAndWallet(User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
             throw new InvalidAmountException("Username already exists");
         }
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
         user = userRepository.save(user);
 
         Wallet wallet = new Wallet();
@@ -72,15 +75,14 @@ public class WalletServiceImpl implements WalletService {
         wallet.setBalance(0.0);
         walletRepository.save(wallet);
 
-        logger.info("Created user {} with wallet", username);
+        logger.info("Created user {} with wallet", user.getUsername());
         return wallet;
     }
 
     public WalletDto getWalletByUserId(Long userId) {
         Wallet wallet = walletRepository.findByUserId(userId)
                 .orElseThrow(() -> new UserNotFoundException("Wallet not found for user: " + userId));
-        return new WalletDto(wallet.getId(), wallet.getUser().getId(),
-                wallet.getUser().getUsername(), wallet.getBalance());
+        return walletMapper.toDto(wallet);
     }
 
     @Transactional
@@ -155,8 +157,7 @@ public class WalletServiceImpl implements WalletService {
         request = topUpRequestRepository.save(request);
 
         logger.info("Top-up request created: {} for user {}", amount, userId);
-        return new TopUpResponseDto(request.getId(), request.getUserId(),
-                request.getAmount(), request.getStatus(), request.getCreatedAt());
+        return topUpRequestMapper.toDto(request);
     }
 
     @Transactional
@@ -173,8 +174,7 @@ public class WalletServiceImpl implements WalletService {
         request = topUpRequestRepository.save(request);
 
         logger.info("Top-up request {} approved by admin {}", requestId, adminUserId);
-        return new TopUpResponseDto(request.getId(), request.getUserId(),
-                request.getAmount(), request.getStatus(), request.getCreatedAt());
+        return topUpRequestMapper.toDto(request);
     }
 
     @Transactional
@@ -190,8 +190,7 @@ public class WalletServiceImpl implements WalletService {
         request = topUpRequestRepository.save(request);
 
         logger.info("Top-up request rejected: {}", requestId);
-        return new TopUpResponseDto(request.getId(), request.getUserId(),
-                request.getAmount(), request.getStatus(), request.getCreatedAt());
+        return topUpRequestMapper.toDto(request);
     }
 
     public List<TopUpResponseDto> getPendingTopUpRequests() {
@@ -205,9 +204,7 @@ public class WalletServiceImpl implements WalletService {
     public List<TransactionDto> getUserTransactions(Long userId) {
         return transactionsRepository.findBySenderIdOrReceiverIdOrderByCreatedAtDesc(userId, userId)
                 .stream()
-                .map(t -> new TransactionDto(t.getId(), t.getSenderId(),
-                        t.getReceiverId(), t.getAmount(), t.getType(),
-                        t.getReference(), t.getCreatedAt()))
+                .map(transactionsMapper::toDto)
                 .collect(Collectors.toList());
     }
 

@@ -4,7 +4,7 @@ import com.sarinkejohn.digitalwalletbackendservice.dto.RegisterRequest;
 import com.sarinkejohn.digitalwalletbackendservice.entity.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface RegisterRequestMapper {
 
     User toEntity(RegisterRequest request);

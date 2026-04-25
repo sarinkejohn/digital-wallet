@@ -1,12 +1,13 @@
 package com.sarinkejohn.digitalwalletbackendservice.service;
 
 import com.sarinkejohn.digitalwalletbackendservice.dto.*;
+import com.sarinkejohn.digitalwalletbackendservice.entity.User;
 import com.sarinkejohn.digitalwalletbackendservice.entity.Wallet;
 import java.util.List;
 
 public interface WalletService {
     
-    Wallet createUserAndWallet(String username, String password, String role);
+    Wallet createUserAndWallet(User user);
     
     WalletDto getWalletByUserId(Long userId);
     

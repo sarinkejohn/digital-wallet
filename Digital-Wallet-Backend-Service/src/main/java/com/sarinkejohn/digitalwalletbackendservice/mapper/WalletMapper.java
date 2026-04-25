@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface WalletMapper {
 
     WalletDto toDto(Wallet wallet);
@@ -17,10 +17,10 @@ public interface WalletMapper {
     
     // Helper method to set user on wallet
     default void setUser(Wallet wallet, WalletDto walletDto) {
-        if (walletDto.getUserId() != null) {
+        if (walletDto.userId() != null) {
             User user = new User();
-            user.setId(walletDto.getUserId());
-            user.setUsername(walletDto.getUsername());
+            user.setId(walletDto.userId());
+            user.setUsername(walletDto.username());
             wallet.setUser(user);
         }
     }
