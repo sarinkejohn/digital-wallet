@@ -1,0 +1,122 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: dw-postgres
+    environment:
+      POSTGRES_DB: digital_wallet_db
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5438:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dw-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: dw-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dw-network
+
+  # Digital Wallet Backend Service
+  backend:
+    image: eclipse-temurin:17-jre-alpine
+    container_name: dw-backend
+    working_dir: /app
+    volumes:
+      - ../Digital-Wallet-Backend-Service/target:/app:ro
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/digital_wallet_db
+      SPRING_DATASOURCE_USERNAME: test
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm}
+      BCRYPT_ROUNDS: 10
+      AUTH_MAX_LOGIN_ATTEMPTS: 5
+      AUTH_LOCKOUT_DURATION: 5
+      WALLET_TRANSFER_MIN_AMOUNT: 1.0
+      WALLET_TRANSFER_MAX_AMOUNT: 100000.0
+      WALLET_TOPUP_MAX_AMOUNT: 1000000.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Waiting for PostgreSQL...' &&
+        while ! nc -z postgres 5432; do sleep 2; done &&
+        echo 'Starting Backend...' &&
+        java -jar /app/Digital-Wallet-Backend-Service-0.0.1-SNAPSHOT.jar
+      "
+    networks:
+      - dw-network
+    restart: unless-stopped
+
+  # API Gateway
+  gateway:
+    image: eclipse-temurin:17-jre-alpine
+    container_name: dw-gateway
+    working_dir: /app
+    volumes:
+      - ../backend-gateway/target:/app:ro
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-mySecretKeyForDigitalWalletServiceThat'sLongEnoughForHS256Algorithm}
+      ALLOWED_ORIGINS: http://localhost:5173,http://localhost:3000
+      CHANNEL_ARRAY_LIST: WEBP,SWIFTY,BANKAPP,MOBILEMONEY,SAMONEY
+      CHANNEL_TIER_MAP_WEBP: SILVER
+      CHANNEL_TIER_MAP_SWIFTY: GOLD
+      CHANNEL_TIER_MAP_BANKAPP: GOLD
+      CHANNEL_TIER_MAP_MOBILEMONEY: BRONZE
+      CHANNEL_TIER_MAP_SAMONEY: BRONZE
+      APP_RATE_LIMIT_PACKAGE: SILVER
+    ports:
+      - "9090:9090"
+    depends_on:
+      - backend
+      - redis
+    command: >
+      sh -c "
+        echo 'Waiting for Backend...' &&
+        while ! nc -z backend 8080; do sleep 2; done &&
+        echo 'Starting Gateway...' &&
+        java -jar /app/gateway-demo-0.0.1-SNAPSHOT.jar
+      "
+    networks:
+      - dw-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  dw-network:
+    driver: bridge
